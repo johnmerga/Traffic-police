@@ -1,6 +1,6 @@
 # Gears
 
-A new Flutter project.
+A brand new Flutter project.
 
 ##  Technologies
   - Flutter : ```2.4```
