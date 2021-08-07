@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:project1/signup.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = "login-page";
@@ -22,11 +23,11 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final email = TextFormField(
+    final username = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       decoration: InputDecoration(
-        hintText: 'Email',
+        hintText: 'Username',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         //border: OutLineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -63,10 +64,17 @@ class _LoginPageState extends State<LoginPage> {
         'Do not have account? Signup',
         style: TextStyle(color: Colors.purple, fontSize: 15),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (contect) {
+          return new Signup();
+        }));
+      },
     );
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Traffic App'),
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: ListView(
@@ -75,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               logo,
               SizedBox(height: 50.0),
-              email,
+              username,
               SizedBox(height: 15.0),
               password,
               SizedBox(height: 24.0),
