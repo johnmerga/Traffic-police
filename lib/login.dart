@@ -2,7 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:project1/signup.dart';
+import 'package:project1/addOfficer.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = "login-page";
@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 70.0,
-        //child: Image.asset('images/logo.jpg'),
+        //child: Image.asset('assets/logo.jpg'),
       ),
     );
 
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final loginButton = Padding(
+    final loginBtn = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -57,18 +57,6 @@ class _LoginPageState extends State<LoginPage> {
         child: Text('Log In',
             style: TextStyle(color: Colors.white, fontSize: 17.0)),
       ),
-    );
-
-    final forgotLabel = TextButton(
-      child: Text(
-        'Do not have account? Signup',
-        style: TextStyle(color: Colors.purple, fontSize: 15),
-      ),
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (contect) {
-          return new Signup();
-        }));
-      },
     );
 
     return Scaffold(
@@ -87,8 +75,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 15.0),
               password,
               SizedBox(height: 24.0),
-              loginButton,
-              forgotLabel
+              loginBtn,
             ]),
       ),
     );
