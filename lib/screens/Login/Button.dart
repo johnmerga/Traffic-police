@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traffic_police/screens/screen_generator.dart';
 
 class Button extends StatelessWidget {
   @override
@@ -7,8 +8,10 @@ class Button extends StatelessWidget {
       width: double.infinity,
       height: 40.0,
       child: ElevatedButton(
-        
-        onPressed: () {},
+        onPressed: () {
+          // Navigator.of(context).pushNamed(RouteGenerator.officerHome);
+          Navigator.pushReplacementNamed(context, RouteGenerator.officerHome);
+        },
         child: Text(
           "Login",
           style: TextStyle(

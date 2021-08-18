@@ -21,7 +21,7 @@ class Base extends StatelessWidget {
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      initialRoute: RouteGenerator.homePage,
+      initialRoute: RouteGenerator.loginPage,
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false,
     );
