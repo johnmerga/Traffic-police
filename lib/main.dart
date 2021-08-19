@@ -45,4 +45,5 @@ MaterialColor colorCustom2 = MaterialColor(0xFFdc5034, color);
 MaterialColor colorCustom3 = MaterialColor(0xFFc2ff00, color);
 MaterialColor colorCustom4 = MaterialColor(0xFF00a1f1, color);
 MaterialColor colorCustom5 = MaterialColor(0xFF095280, color);
+MaterialColor colorCustom1L = MaterialColor(0xFF001026, color);
 // MaterialColor colorCustomWhite = MaterialColor(0x#FFffffff, color);
