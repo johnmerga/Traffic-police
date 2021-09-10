@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/auth_temp/bloc/auth_temp.dart';
+import 'package:traffic_police/auth_temp/bloc/authtemp_bloc.dart';
 import 'package:traffic_police/main.dart';
 
 class Drawer_header extends StatefulWidget {
@@ -31,19 +34,37 @@ class _Drawer_headerState extends State<Drawer_header> {
               ),
             ),
           ),
-          Text(
-            'Your Name',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
+          BlocConsumer<AuthtempBloc, AuthtempState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              String name = "Default name";
+              if (state is LoggedIn) {
+                name = state.user.firstName + " " + state.user.lastName;
+              }
+              return Text(
+                name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              );
+            },
           ),
-          Text(
-            'Level',
-            style: TextStyle(
-              color: Colors.yellow,
-              fontSize: 14,
-            ),
+          BlocConsumer<AuthtempBloc, AuthtempState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              String Deafult = "Default name";
+              if (state is LoggedIn) {
+                Deafult = state.user.position;
+              }
+              return Text(
+                Deafult,
+                style: TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 14,
+                ),
+              );
+            },
           ),
         ],
       ),

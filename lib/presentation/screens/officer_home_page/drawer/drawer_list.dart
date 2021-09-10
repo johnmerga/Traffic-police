@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:traffic_police/main.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/auth_temp/bloc/auth_temp.dart';
+
 import 'package:traffic_police/screen_generator.dart';
 
 Widget drawerLists({required BuildContext context}) {
@@ -29,22 +31,30 @@ Widget drawerLists({required BuildContext context}) {
 
 //
 Widget logout() {
-  return Padding(
-    padding: const EdgeInsets.all(15.0),
-    child: ListTile(
-      onTap: () {},
-      leading: Icon(
-        Icons.logout,
-        color: Colors.red,
-      ),
-      title: Text(
-        'Logout',
-        style: TextStyle(color: Colors.red),
-      ),
-    ),
+  return BlocConsumer<AuthtempBloc, AuthtempState>(
+    listener: (context, state) {},
+    builder: (context, state) {
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListTile(
+          onTap: () {
+            BlocProvider.of<AuthtempBloc>(context).add(LogoutEvent());
+            Navigator.pushNamedAndRemoveUntil(
+                context, RouteGenerator.loginPage, (route) => false);
+          },
+          leading: Icon(
+            Icons.logout,
+            color: Colors.red,
+          ),
+          title: Text(
+            'Logout',
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      );
+    },
   );
 }
-
 
 
 

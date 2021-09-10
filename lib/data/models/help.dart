@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:equatable/equatable.dart';
 
 class Help extends Equatable {

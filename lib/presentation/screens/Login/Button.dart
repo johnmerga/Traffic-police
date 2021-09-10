@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'package:traffic_police/presentation/screens/Login/InputField.dart';
-import 'package:traffic_police/screen_generator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/blocs/login/login_bloc.dart';
+import 'package:traffic_police/blocs/login/login_event.dart';
 
 class Button extends StatelessWidget {
-  
+  final GlobalKey<FormState> formKey;
+
+  Button({required this.formKey});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -12,14 +14,14 @@ class Button extends StatelessWidget {
       height: 40.0,
       child: ElevatedButton(
         onPressed: () {
-          final GlobalKey<FormState> form = InputField.keyLogin;
-          if (form.currentState?.validate()?? false) {
-            form.currentState?.save();
-            Navigator.pushReplacementNamed(context, RouteGenerator.officerHome);
+          if (formKey.currentState?.validate() ?? false) {
+            formKey.currentState?.save();
+            BlocProvider.of<LoginBloc>(context).add(
+              LoginInWithEmailButtonPressed(
+                  email: "admin@gmail.com", password: "admin123"),
+            );
+            //Navigator.pushReplacementNamed(context, RouteGenerator.officerHome);
           }
-          // Navigator.of(context).pushNamed(RouteGenerator.officerHome);
-
-          //Navigator.pushReplacementNamed(context, RouteGenerator.adminHome);
         },
         child: Text(
           "Login",

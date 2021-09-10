@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'Button.dart';
 import 'InputField.dart';
 
 class InputWrapper extends StatelessWidget {
+  final GlobalKey<InputFieldState> formKey = GlobalKey<InputFieldState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,10 +20,12 @@ class InputWrapper extends StatelessWidget {
           SizedBox(
             height: 40,
           ),
-          Button(),
+
+          // (state is AuthenticationLoading) ?
+
           // SizedBox(
           //   height: 3,
-          // ),
+          // )
           TextButton(
             onPressed: () {},
             child: Text(

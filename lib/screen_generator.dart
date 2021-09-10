@@ -20,21 +20,6 @@ import 'package:traffic_police/presentation/screens/officer_home_page/officer_ho
 import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/recent/Recent_List_Officer.dart';
-// import 'package:traffic_police/screens/Login/login.dart';
-// import 'package:traffic_police/screens/admin_home_page/add_officer/Add_Officer.dart';
-// import 'package:traffic_police/screens/officer_home_page/help/help.dart';
-// import 'package:traffic_police/screens/officer_home_page/officer_home.dart';
-// import 'package:traffic_police/screens/admin_home_page/admin_home.dart';
-// import 'package:traffic_police/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
-// import 'package:traffic_police/screens/officer_home_page/recent/Recent_List_Officer.dart';
-// import 'admin_home_page/officers_list/Officers_List.dart';
-// import 'admin_home_page/officers_list/officer_detail/Officer_Detail.dart';
-// import 'admin_home_page/penalties_list/Penalties_List_Admin.dart';
-// import 'admin_home_page/penalties_list/penalty_detail/Penalty_Detail_Admin.dart';
-// import 'officer_home_page/add_penalities/add_penalties.dart';
-// import 'officer_home_page/drawer/edit_profile_page.dart';
-// import 'officer_home_page/drawer/profile_page.dart';
-// import 'officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
 
 class RouteGenerator {
   static const String loginPage = "/";
@@ -78,6 +63,8 @@ class RouteGenerator {
 
   static const String profile =
       "/presentation/screens/officer_home_page/drawer/profile_page";
+  static const String admin_profile =
+      "/presentation/screens/admin_home_page/drawer/profile_page";
   static const String editprofile =
       "/presentation/screens/officer_home_page/drawer/edit_profile_page";
 
@@ -123,7 +110,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => RecentListAdmin());
 
       case profile:
-        return MaterialPageRoute(builder: (_) => ProfilePage());
+        return MaterialPageRoute(builder: (_) => OfficerProfilePage());
       case editprofile:
         return MaterialPageRoute(builder: (_) => EditProfilePage());
 

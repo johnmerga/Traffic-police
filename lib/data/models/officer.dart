@@ -28,7 +28,7 @@ class Officer extends Equatable {
   final String phoneNumber;
   final String email;
   final String password;
-  final DateTime startDate;
+  final String startDate;
 
   Officer({
     required this.id,

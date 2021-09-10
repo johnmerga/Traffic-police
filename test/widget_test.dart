@@ -7,13 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:traffic_police/data/data_provider/data_provider.dart';
+import 'package:traffic_police/data/repository/auth_repository.dart';
 
 import 'package:traffic_police/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Base());
+    await tester.pumpWidget( Base( authenticationRepository: AuthenticationRepository(authenticationDataProvider: AuthenticationDataProvider()),));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

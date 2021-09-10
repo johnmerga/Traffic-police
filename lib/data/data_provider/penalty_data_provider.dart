@@ -4,7 +4,7 @@ import 'package:traffic_police/data/models/models.dart';
 import 'package:http/http.dart' as http;
 
 class PenaltyDataProvider {
-  static final String _baseUrl = "http://10.0.2.2:9191/api/v1/Penalties";
+  static final String _baseUrl = "http://192.168.122.1:5000/api/penalty";
 
   Future<Penalty> create(Penalty penalty) async {
     final http.Response response = await http.post(Uri.parse(_baseUrl),

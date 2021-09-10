@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/auth_temp/bloc/auth_temp.dart';
+// import 'package:traffic_police/blocs/login/login.dart';
 import 'package:traffic_police/main.dart';
 
 class InputField extends StatefulWidget {
-  static final GlobalKey<FormState> keyLogin =  GlobalKey();
+  //static final <FormState> keyLogin =  GlobalKey();
+
   @override
-  State<InputField> createState() => _InputFieldState();
+  State<InputField> createState() => InputFieldState();
 }
 
-class _InputFieldState extends State<InputField> {
+class InputFieldState extends State<InputField> {
   // variables
-  
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  String _email = "";
-  String _password = "";
-
-  // validator
-  // String validatePassword(String value) {
-  //   if (value.isEmpty) {
-  //     return "* Required";
-  //   } else if (value.length < 6) {
-  //     return "Password should be atleast 6 characters";
-  //   } else if (value.length > 15) {
-  //     return "Password should not be greater than 15 characters";
-  //   } else
-  //     return null;
-  // }
+  String? email;
+  String? password;
 
   bool _isHidden = true;
   @override
@@ -39,7 +31,7 @@ class _InputFieldState extends State<InputField> {
     }
 
     return Form(
-      key: InputField.keyLogin,
+      key: formKey,
       child: Column(
         children: <Widget>[
           // Email input
@@ -54,10 +46,10 @@ class _InputFieldState extends State<InputField> {
             )),
             child: TextFormField(
               controller: _emailController,
-              onChanged: (value) => _email = value.trim(),
+              onChanged: (value) => email = value.trim(),
               keyboardType: TextInputType.emailAddress,
               validator: (value) => !isEmail(value.toString())
-                  ? "Sorry, we do not recognize this email address"
+                  ? "please provide a valid email address"
                   : null,
               decoration: InputDecoration(
                 hintText: "Enter your email",
@@ -84,11 +76,11 @@ class _InputFieldState extends State<InputField> {
             ),
             child: TextFormField(
               controller: _passwordController,
-              onChanged: (value) => _password = value.trim(),
+              onChanged: (value) => password = value.trim(),
               validator: (value) => value != null && value.length < 8
                   ? "Password must be 8 or more characters in length"
                   : null,
-              onSaved: (value) => _password = value.toString(),
+              onSaved: (value) => password = value.toString(),
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 hintText: "Enter your password",
@@ -107,6 +99,46 @@ class _InputFieldState extends State<InputField> {
               obscureText: _isHidden,
             ),
           ),
+          SizedBox(
+            width: double.infinity,
+            height: 40.0,
+            child: BlocConsumer<AuthtempBloc, AuthtempState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                Widget buttonChild = Text(
+                  "Login",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+                if (state is AuthLoading) {
+                  buttonChild = SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  );
+                }
+
+                return ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState?.validate() ?? false) {
+                      formKey.currentState?.save();
+
+                      BlocProvider.of<AuthtempBloc>(context).add(
+                        LoginEvent(
+                            email: email ?? "", password: password ?? ""),
+                      );
+                    }
+                  },
+                  child: buttonChild,
+                );
+              },
+            ),
+          )
         ],
       ),
     );
@@ -121,3 +153,9 @@ class _InputFieldState extends State<InputField> {
     return value.isNotEmpty && regExp.hasMatch(value);
   }
 }
+
+
+                // if (formKey.currentState?.validate() ?? false) {
+                //   formKey.currentState?.save();
+                //   //Navigator.pushReplacementNamed(context, RouteGenerator.officerHome);
+                // }

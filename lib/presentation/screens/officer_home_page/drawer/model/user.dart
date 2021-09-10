@@ -5,7 +5,6 @@ class User {
   final String username;
   final String password;
   final String about;
-  final bool isDarkMode;
 
   const User({
     required this.imagePath,
@@ -14,6 +13,5 @@ class User {
     required this.username,
     required this.password,
     required this.about,
-    required this.isDarkMode,
   });
 }

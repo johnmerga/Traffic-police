@@ -1,6 +1,8 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+//import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/auth_temp/bloc/auth_temp.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/model/user.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/utils/user_preferences.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/widget/numbers_widget.dart';
@@ -8,58 +10,68 @@ import 'package:traffic_police/presentation/screens/officer_home_page/drawer/wid
 import 'package:traffic_police/presentation/widget/use_again.dart';
 import 'package:traffic_police/screen_generator.dart';
 
-class ProfilePage extends StatefulWidget {
+class OfficerProfilePage extends StatefulWidget {
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _OfficerProfilePageState createState() => _OfficerProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _OfficerProfilePageState extends State<OfficerProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
+    return BlocConsumer<AuthtempBloc, AuthtempState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        String user = "", email = "", info = "";
+        if (state is LoggedIn) {
+          user = state.user.firstName + " " + state.user.lastName;
+          email = state.user.email;
+          info =
+              "Started Date: ${state.user.startDate} \nAddress: ${state.user.state}";
+        }
 
-    return ThemeSwitchingArea(
-      child: Builder(
-        builder: (context) => Scaffold(
-          appBar: usableAppbar(isHome: false, name: "Profile-Page"),
-          body: ListView(
-            physics: BouncingScrollPhysics(),
-            children: [
-              ProfileWidget(
-                imagePath: user.imagePath,
-                onClicked: () {
-                  Navigator.pushNamed(context, RouteGenerator.editprofile);
-                },
-              ),
-              const SizedBox(height: 24),
-              buildName(user),
-              const SizedBox(height: 24),
-              const SizedBox(height: 24),
-              NumbersWidget(),
-              const SizedBox(height: 48),
-              buildAbout(user),
-            ],
+        return Builder(
+          builder: (context) => Scaffold(
+            appBar: usableAppbar(isHome: false, name: "Profile-Page"),
+            body: ListView(
+              physics: BouncingScrollPhysics(),
+              children: [
+                const SizedBox(height: 24),
+                ProfileWidget(
+                  imagePath: 'assets/officer1.png',
+                  onClicked: () {
+                    Navigator.pushNamed(context, RouteGenerator.editprofile);
+                  },
+                ),
+                const SizedBox(height: 24),
+                buildName(user, email),
+                const SizedBox(height: 24),
+                const SizedBox(height: 24),
+                NumbersWidget(),
+                const SizedBox(height: 48),
+                buildAbout(user, info),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
-  Widget buildName(User user) => Column(
+  Widget buildName(String user, String email) => Column(
         children: [
           Text(
-            user.name,
+            user,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
           const SizedBox(height: 4),
           Text(
-            user.email,
+            email,
             style: TextStyle(color: Colors.grey),
           )
         ],
       );
 
-  Widget buildAbout(User user) => Container(
+  Widget buildAbout(user, info) => Container(
         padding: EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 16),
             Text(
-              user.about,
+              info,
               style: TextStyle(fontSize: 16, height: 1.4),
             ),
           ],

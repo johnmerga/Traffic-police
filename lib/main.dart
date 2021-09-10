@@ -1,29 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/auth_temp/bloc/authtemp_bloc.dart';
+import 'package:traffic_police/blocs/authentication/auth_bloc.dart';
+import 'package:traffic_police/blocs/authentication/authentication.dart';
+import 'package:traffic_police/blocs/login/login_bloc.dart';
+import 'package:traffic_police/data/data_provider/data_provider.dart';
+import 'package:traffic_police/data/repository/all_repository.dart';
 import 'package:traffic_police/screen_generator.dart';
 
-main() => runApp(Base());
+void main() async {
+  // Bloc.observer = SimpleBlocObserver();
+  final AuthenticationRepository authenticationRepository =
+      AuthenticationRepository(
+          authenticationDataProvider: AuthenticationDataProvider());
+
+  runApp(Base(
+    authenticationRepository: authenticationRepository,
+  ));
+}
 
 class Base extends StatelessWidget {
   // const Base({ Key? key }) : super(key: key);
+  final AuthenticationRepository authenticationRepository;
+  const Base({
+    Key? key,
+    required this.authenticationRepository,
+  }) : assert(authenticationRepository != null);
 
+  //
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: colorCustom1,
-        accentColor: colorCustom4,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(value: this.authenticationRepository)
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthtempBloc>(
+            create: (context) =>
+                AuthtempBloc(repository: authenticationRepository),
+          ),
+          BlocProvider<AuthenticationBloc>(
+            create: (context) =>
+                AuthenticationBloc(this.authenticationRepository)
+                  ..add(AppLoaded()),
+          ),
+          BlocProvider<LoginBloc>(
+              create: (context) => LoginBloc(
+                  AuthenticationBloc(authenticationRepository),
+                  this.authenticationRepository)),
+        ],
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: colorCustom1,
+            accentColor: colorCustom4,
 
-        // text theme
-        textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+            // text theme
+            textTheme: const TextTheme(
+              headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+              headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+            ),
+          ),
+          initialRoute: RouteGenerator.loginPage,
+          onGenerateRoute: RouteGenerator.generateRoute,
+          debugShowCheckedModeBanner: false,
         ),
       ),
-      initialRoute: RouteGenerator.loginPage,
-      onGenerateRoute: RouteGenerator.generateRoute,
-      debugShowCheckedModeBanner: false,
     );
   }
 }
