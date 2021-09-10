@@ -23,19 +23,28 @@ class All_menu extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 child: Card(
-                  
-                  shadowColor: colorCustom1,
-                  elevation: 20,
-                  color: colorCustom1L,
-                  shape: roundedShape,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Stats of the week',style:TextStyle(color: Colors.white),)
-                    ],
-
-                  )
-                ),
+                    shadowColor: colorCustom1,
+                    elevation: 20,
+                    color: colorCustom1L,
+                    shape: roundedShape,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Stats of the week',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _penalitie(context);
+                          },
+                          child: Text(
+                            'test',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
             ),
             SizedBox(height: 15),
@@ -55,7 +64,9 @@ class All_menu extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: roundedShape,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _penalitie(context);
+                      },
                       child: homeBtnContainer(
                         btnNmae: 'Penalties',
                         icon: Icon(
@@ -130,4 +141,20 @@ class All_menu extends StatelessWidget {
       ),
     );
   }
+}
+
+void _penalitie(BuildContext context) {
+  showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+          height: MediaQuery.of(context).size.height * .9,
+          child: Column(
+            children: [
+              
+            ],
+          ),
+        );
+      });
 }
