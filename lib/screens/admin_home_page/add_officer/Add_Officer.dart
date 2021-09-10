@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:traffic_police/main.dart';
 import 'package:traffic_police/widget/use_again.dart';
 
+import 'Add_officer_Button.dart';
 import 'Header.dart';
 import 'InputWrapper.dart';
 
@@ -44,7 +45,8 @@ class _AddOfficerState extends State<AddOfficer> {
                 ),
                 child: InputWrapper(),
               ),
-            )
+            ),
+            Add_Officer_Button(),
           ],
         ),
       ),

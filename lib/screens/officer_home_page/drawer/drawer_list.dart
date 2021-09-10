@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:traffic_police/main.dart';
 
-Widget drawerLists() {
+import '../../screen_generator.dart';
+
+Widget drawerLists({required BuildContext context}) {
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: Column(
       children: [
         ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, RouteGenerator.profile);
+          },
           leading: Icon(Icons.person),
           title: Text('Profile'),
         ),

@@ -4,6 +4,7 @@ import 'package:traffic_police/widget/use_again.dart';
 
 import 'Header.dart';
 import 'InputWrapper.dart';
+import 'Save_Edit_Button.dart';
 
 class PenaltyDetailOfficer extends StatefulWidget {
   @override
@@ -45,7 +46,8 @@ class _PenaltyDetailOfficerState extends State<PenaltyDetailOfficer> {
                 ),
                 child: InputWrapper(),
               ),
-            )
+            ),
+            Save_Edit_Button(),
           ],
         ),
       ),

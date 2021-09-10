@@ -56,8 +56,7 @@ class _InputFieldState extends State<InputField> {
               ),
               onTap: () {
                 debugPrint("Listen ontap");
-                Navigator.pushReplacementNamed(
-                    context, RouteGenerator.officerDetail);
+                Navigator.pushNamed(context, RouteGenerator.officerDetail);
               },
             ),
           );

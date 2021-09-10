@@ -5,19 +5,20 @@ import 'package:traffic_police/widget/use_again.dart';
 import 'Header.dart';
 import 'InputWrapper.dart';
 
-class LoginPage extends StatefulWidget {
+class RecentListOfficer extends StatefulWidget {
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RecentListOfficer> createState() => _RecentListOfficerState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RecentListOfficerState extends State<RecentListOfficer> {
   @override
   Widget build(BuildContext context) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
-      //appBar: usableAppbar(isHome: true, name: "Traffic-App", context: context),
+      appBar: usableAppbar(
+          isHome: false, name: "Recent-Penalties", context: context),
 
-      // resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             if (!isKeyboard)
               SizedBox(
-                height: 80,
+                height: 20,
               ),
             if (!isKeyboard) Header(),
             Expanded(
@@ -44,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: InputWrapper(),
               ),
-            )
+            ),
           ],
         ),
       ),

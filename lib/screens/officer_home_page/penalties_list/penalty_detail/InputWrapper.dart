@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'Save_Edit_Button.dart';
 import 'InputField.dart';
 
 class InputWrapper extends StatelessWidget {
@@ -23,7 +22,6 @@ class InputWrapper extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          Save_Edit_Button(),
         ],
       ),
     );

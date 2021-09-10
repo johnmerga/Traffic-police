@@ -6,11 +6,14 @@ import 'package:traffic_police/screens/officer_home_page/help/help.dart';
 import 'package:traffic_police/screens/officer_home_page/officer_home.dart';
 import 'package:traffic_police/screens/admin_home_page/admin_home.dart';
 import 'package:traffic_police/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
+import 'package:traffic_police/screens/officer_home_page/recent/Recent_List_Officer.dart';
 import 'admin_home_page/officers_list/Officers_List.dart';
 import 'admin_home_page/officers_list/officer_detail/Officer_Detail.dart';
 import 'admin_home_page/penalties_list/Penalties_List_Admin.dart';
 import 'admin_home_page/penalties_list/penalty_detail/Penalty_Detail_Admin.dart';
 import 'officer_home_page/add_penalities/add_penalties.dart';
+import 'officer_home_page/drawer/edit_profile_page.dart';
+import 'officer_home_page/drawer/profile_page.dart';
 import 'officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
 
 class RouteGenerator {
@@ -35,6 +38,12 @@ class RouteGenerator {
   static const String penaltyDetailOfficer =
       "/screens/officer_home_page/penalties_list/penalty_detail/penalty_detail_officer";
   static const String help = "/screens/officer_home_page/help/help";
+  static const String recent =
+      "/screens/officer_home_page/recent/recent_list_officer";
+  static const String profile =
+      "/screens/officer_home_page/drawer/profile_page";
+  static const String editprofile =
+      "/screens/officer_home_page/drawer/edit_profile_page";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -62,6 +71,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PenaltyDetailOfficer());
       case help:
         return MaterialPageRoute(builder: (_) => Help());
+      case recent:
+        return MaterialPageRoute(builder: (_) => RecentListOfficer());
+      case profile:
+        return MaterialPageRoute(builder: (_) => ProfilePage());
+      case editprofile:
+        return MaterialPageRoute(builder: (_) => EditProfilePage());
 
       default:
         throw FormatException("Route was not found");

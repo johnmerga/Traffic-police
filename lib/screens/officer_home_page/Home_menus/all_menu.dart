@@ -59,7 +59,7 @@ class All_menu extends StatelessWidget {
                         shape: roundedShape,
                       ),
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
+                        Navigator.pushNamed(
                             context, RouteGenerator.penaltyListOfficer);
                       },
                       child: homeBtnContainer(
@@ -102,7 +102,10 @@ class All_menu extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: roundedShape,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, RouteGenerator.recent);
+                      },
                       child: homeBtnContainer(
                         btnNmae: 'Recent',
                         icon: Icon(

@@ -10,20 +10,17 @@ class InputField extends StatefulWidget {
 class _InputFieldState extends State<InputField> {
   // variables
 
-  final clearTxt = TextEditingController();
   bool _isHidden = true;
-  int count = 2;
+  int count = 12;
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
 
     // clears input text
-    void clearInput() {
-      clearTxt.clear();
-    }
 
     TextStyle penaltyTitle = Theme.of(context).textTheme.subtitle1!;
     TextStyle penaltyName = Theme.of(context).textTheme.subtitle2!;
+    TextStyle penaltyDate = Theme.of(context).textTheme.subtitle2!;
 
     return ListView.builder(
         scrollDirection: Axis.vertical,
@@ -34,17 +31,30 @@ class _InputFieldState extends State<InputField> {
             color: Colors.white,
             elevation: 2.0,
             child: ListTile(
+              minVerticalPadding: 10,
               leading: CircleAvatar(
                 backgroundColor: Colors.lightBlue,
                 child: Icon(Icons.receipt),
               ),
-              title: Text(
-                "Penalty Title",
-                style: penaltyName,
-              ),
-              subtitle: Text(
-                "Officer Name",
-                style: penaltyTitle,
+              title: Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Penalty Title",
+                      style: penaltyTitle,
+                    ),
+                    Text(
+                      "Officer Name",
+                      style: penaltyName,
+                    ),
+                    Text(
+                      "Officer Date",
+                      style: penaltyDate,
+                    ),
+                  ],
+                ),
               ),
               trailing: IconButton(
                   icon: Icon(
@@ -55,7 +65,7 @@ class _InputFieldState extends State<InputField> {
                   }),
               onTap: () {
                 debugPrint("Listen ontap");
-                Navigator.pushNamed(
+                Navigator.pushReplacementNamed(
                     context, RouteGenerator.penaltyDetailOfficer);
               },
             ),
