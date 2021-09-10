@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:traffic_police/presentation/screens/Login/login.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/add_officer/Add_Officer.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/admin_home.dart';
+import 'package:traffic_police/presentation/screens/admin_home_page/drawer/profile_page.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/help_list/Help_List_Admin.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/help_list/help_detail/Help_Detail_Admin.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/officers_list/Officers_List.dart';
@@ -63,7 +64,7 @@ class RouteGenerator {
 
   static const String profile =
       "/presentation/screens/officer_home_page/drawer/profile_page";
-  static const String admin_profile =
+  static const String adminprofile =
       "/presentation/screens/admin_home_page/drawer/profile_page";
   static const String editprofile =
       "/presentation/screens/officer_home_page/drawer/edit_profile_page";
@@ -111,6 +112,8 @@ class RouteGenerator {
 
       case profile:
         return MaterialPageRoute(builder: (_) => OfficerProfilePage());
+      case adminprofile:
+        return MaterialPageRoute(builder: (_) => AdminProfilePage());
       case editprofile:
         return MaterialPageRoute(builder: (_) => EditProfilePage());
 

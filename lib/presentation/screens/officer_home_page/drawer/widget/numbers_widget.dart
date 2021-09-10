@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:traffic_police/auth_temp/bloc/auth_temp.dart';
-import 'package:traffic_police/auth_temp/bloc/authtemp_bloc.dart';
+import 'package:traffic_police/blocs/authentication/auth_temp.dart';
 import 'package:traffic_police/main.dart';
 
 class NumbersWidget extends StatelessWidget {

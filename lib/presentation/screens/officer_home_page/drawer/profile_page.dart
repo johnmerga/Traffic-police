@@ -2,9 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:traffic_police/auth_temp/bloc/auth_temp.dart';
-import 'package:traffic_police/presentation/screens/officer_home_page/drawer/model/user.dart';
-import 'package:traffic_police/presentation/screens/officer_home_page/drawer/utils/user_preferences.dart';
+import 'package:traffic_police/blocs/authentication/auth_temp.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/widget/numbers_widget.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/widget/profile_widget.dart';
 import 'package:traffic_police/presentation/widget/use_again.dart';

@@ -7,194 +7,153 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  // variables
-  final clearTxt = TextEditingController();
-  bool _isHidden = true;
-  DateTime selectedDate = DateTime.now();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
 
-    // clears input text
-    void clearInput() {
-      clearTxt.clear();
-    }
-
     return ListView(
+      physics: ClampingScrollPhysics(),
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       children: [
         Column(
           children: <Widget>[
-            //First name input
+            //Penalty titile
             Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    border: Border(
-                  bottom: BorderSide(
-                    color: colorCustom1,
-                  ),
-                )),
-                child: Text("data")),
-
-            // Last name input
-            Container(
-              padding: EdgeInsets.all(5),
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                   border: Border(
                 bottom: BorderSide(
                   color: colorCustom1,
                 ),
               )),
-              child: TextField(
-                controller: clearTxt, //firstnameController,
-                decoration: InputDecoration(
-                  hintText: "Last Name",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  suffix: IconButton(
-                    onPressed: () => clearInput(),
-                    icon: Icon(Icons.clear),
-                  ),
-                ),
+              child: Text(
+                "Penalty Title",
+                style: TextStyle(fontSize: 20),
               ),
             ),
-
-            // Birth date input
+            // Penalty date
             Container(
-              padding: EdgeInsets.all(5),
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                   border: Border(
                 bottom: BorderSide(
                   color: colorCustom1,
                 ),
               )),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () => _selectDate(context),
-                    child: Icon(Icons.calendar_today),
-                  ),
-                  SizedBox(width: 10),
-                  Text("${selectedDate.toLocal()}".split(' ')[0]),
-                ],
+              child: Text(
+                "Penalty Date",
+                style: TextStyle(fontSize: 20),
               ),
             ),
-
-            //Position input
+            // Penalty description
             Container(
-              padding: EdgeInsets.all(5),
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                   border: Border(
                 bottom: BorderSide(
                   color: colorCustom1,
                 ),
               )),
-              child: TextField(
-                controller: clearTxt,
-                decoration: InputDecoration(
-                  hintText: "Position",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  suffix: IconButton(
-                    onPressed: () => clearInput(),
-                    icon: Icon(Icons.clear),
-                  ),
-                ),
+              child: Text(
+                "Penalty Description",
+                style: TextStyle(fontSize: 20),
               ),
             ),
-
-            // Email input
-
+            // driver first name
             Container(
-              padding: EdgeInsets.all(5),
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                   border: Border(
                 bottom: BorderSide(
                   color: colorCustom1,
                 ),
               )),
-              child: TextField(
-                controller: clearTxt,
-                decoration: InputDecoration(
-                  hintText: "Email",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  suffix: IconButton(
-                    onPressed: () => clearInput(),
-                    icon: Icon(Icons.clear),
-                  ),
-                ),
+              child: Text(
+                "Driver First Name",
+                style: TextStyle(fontSize: 20),
               ),
             ),
-
-            // password input
-
+            // driver last name
             Container(
-              padding: EdgeInsets.all(5),
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: colorCustom1,
-                  ),
+                  border: Border(
+                bottom: BorderSide(
+                  color: colorCustom1,
                 ),
+              )),
+              child: Text(
+                "Driver Last Name",
+                style: TextStyle(fontSize: 20),
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  suffix: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _isHidden = !_isHidden;
-                      });
-                    },
-                    icon: Icon(
-                        _isHidden ? Icons.visibility : Icons.visibility_off),
-                  ),
+            ),
+            // licence number
+            Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  border: Border(
+                bottom: BorderSide(
+                  color: colorCustom1,
                 ),
-                obscureText: _isHidden,
+              )),
+              child: Text(
+                "Licence Number",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            // plate number
+            Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  border: Border(
+                bottom: BorderSide(
+                  color: colorCustom1,
+                ),
+              )),
+              child: Text(
+                "Plate Number",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            // subcity
+            Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  border: Border(
+                bottom: BorderSide(
+                  color: colorCustom1,
+                ),
+              )),
+              child: Text(
+                "Penalty Subcity",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            // Penalty amount
+            Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  border: Border(
+                bottom: BorderSide(
+                  color: colorCustom1,
+                ),
+              )),
+              child: Text(
+                "Penalty Amount in ETB",
+                style: TextStyle(fontSize: 20),
               ),
             ),
           ],
-        ),
-
-        // Start date input
-        Container(
-          padding: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              border: Border(
-            bottom: BorderSide(
-              color: colorCustom1,
-            ),
-          )),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text("Starting Date"),
-              TextButton(
-                onPressed: () => _selectDate(context),
-                child: Icon(Icons.calendar_today),
-              ),
-              SizedBox(width: 10),
-              Text("${selectedDate.toLocal()}".split(' ')[0]),
-            ],
-          ),
         ),
       ],
     );

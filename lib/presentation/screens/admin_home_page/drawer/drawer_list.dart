@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:traffic_police/blocs/authentication/auth_temp.dart';
-
 import 'package:traffic_police/screen_generator.dart';
 
 Widget drawerLists({required BuildContext context}) {
@@ -12,7 +11,7 @@ Widget drawerLists({required BuildContext context}) {
       children: [
         ListTile(
           onTap: () {
-            Navigator.pushNamed(context, RouteGenerator.profile);
+            Navigator.pushNamed(context, RouteGenerator.adminprofile);
           },
           leading: Icon(Icons.person),
           title: Text('Profile'),
@@ -55,6 +54,7 @@ Widget logout() {
     },
   );
 }
+
 
 
 

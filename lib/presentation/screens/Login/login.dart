@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:traffic_police/auth_temp/bloc/authtemp_bloc.dart';
-import 'package:traffic_police/auth_temp/bloc/authtemp_state.dart';
-import 'package:traffic_police/blocs/authentication/authentication.dart';
-import 'package:traffic_police/blocs/login/login.dart';
+import 'package:traffic_police/blocs/authentication/auth_temp.dart';
 import 'package:traffic_police/data/models/models.dart';
 import 'package:traffic_police/main.dart';
 import 'package:traffic_police/screen_generator.dart';

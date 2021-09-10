@@ -127,12 +127,12 @@ class _InputFieldState extends State<InputField> {
           child: Row(
             children: <Widget>[
               Text("Birth Date"),
-              SizedBox(width: 25),
+              SizedBox(width: 10),
               TextButton(
                 onPressed: () => _selectDate(context),
                 child: Icon(Icons.calendar_today),
               ),
-              SizedBox(width: 10),
+              //SizedBox(width: 10),
               Text("${selectedDate.toLocal()}".split(' ')[0]),
             ],
           ),
@@ -299,7 +299,7 @@ class _InputFieldState extends State<InputField> {
                 onPressed: () => _selectDate(context),
                 child: Icon(Icons.calendar_today),
               ),
-              SizedBox(width: 25),
+              //SizedBox(width: 5),
               Text("${selectedDate.toLocal()}".split(' ')[0]),
             ],
           ),

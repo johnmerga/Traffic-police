@@ -66,7 +66,7 @@ class _InputFieldState extends State<InputField> {
                 onPressed: () => _selectDate(context),
                 child: Icon(Icons.calendar_today),
               ),
-              SizedBox(width: 10),
+              //SizedBox(width: 10),
               Text("${selectedDate.toLocal()}".split(' ')[0]),
             ],
           ),

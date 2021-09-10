@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:traffic_police/screen_generator.dart';
+import 'package:traffic_police/main.dart';
 
-
-
+import '../../../../screen_generator.dart';
 
 class InputField extends StatefulWidget {
   @override
@@ -13,8 +12,8 @@ class _InputFieldState extends State<InputField> {
   // variables
 
   final clearTxt = TextEditingController();
- // bool _isHidden = true;
-  int count = 15;
+  bool _isHidden = true;
+  int count = 12;
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
@@ -39,7 +38,7 @@ class _InputFieldState extends State<InputField> {
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.lightBlue,
-                child: Icon(Icons.local_police),
+                child: Icon(Icons.receipt),
               ),
               title: Text(
                 "Penalty Title",
