@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:traffic_police/screens/screen_generator.dart';
+import 'package:traffic_police/screen_generator.dart';
 
 main() => runApp(Base());
 
