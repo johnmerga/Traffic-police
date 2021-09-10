@@ -12,7 +12,7 @@ class MainDrawer extends StatelessWidget {
           Column(
             children: [
               Drawer_header(),
-              drawerLists(),
+              drawerLists(context: context),
             ],
           ),
           logout(),

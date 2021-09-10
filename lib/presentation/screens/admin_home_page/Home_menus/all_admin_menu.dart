@@ -3,9 +3,7 @@ import 'package:traffic_police/main.dart';
 import 'package:traffic_police/presentation/widget/use_again.dart';
 import 'package:traffic_police/screen_generator.dart';
 
-//import '../../screen_generator.dart';
-
-class All_menu extends StatelessWidget {
+class All_admin_menu extends StatelessWidget {
 // rounded rectangle shape
   RoundedRectangleBorder roundedShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(20),
@@ -34,7 +32,7 @@ class All_menu extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Stats of the week',
+                          'Status of the week',
                           style: TextStyle(color: Colors.white),
                         )
                       ],
@@ -60,7 +58,29 @@ class All_menu extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, RouteGenerator.penaltyListOfficer);
+                            context, RouteGenerator.officerList);
+                      },
+                      child: homeBtnContainer(
+                        btnNmae: 'Officers',
+                        icon: Icon(
+                          Icons.local_police,
+                          size: 45,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    shadowColor: colorCustom1,
+                    elevation: 20,
+                    color: colorCustom1L,
+                    shape: roundedShape,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: roundedShape,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RouteGenerator.penaltyListAdmin);
                       },
                       child: homeBtnContainer(
                         btnNmae: 'Penalties',
@@ -80,30 +100,7 @@ class All_menu extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: roundedShape,
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, RouteGenerator.help);
-                      },
-                      child: homeBtnContainer(
-                        btnNmae: 'Help',
-                        icon: Icon(
-                          Icons.help,
-                          size: 45,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: colorCustom1,
-                    elevation: 20,
-                    color: colorCustom1L,
-                    shape: roundedShape,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: roundedShape,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, RouteGenerator.recent);
-                      },
+                      onPressed: () {},
                       child: homeBtnContainer(
                         btnNmae: 'Recent',
                         icon: Icon(
