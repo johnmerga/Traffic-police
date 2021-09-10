@@ -18,14 +18,8 @@ class DeletePenalty extends PenaltyEvent {
   DeletePenalty({required this.penalty});
 }
 
-class FetchPenalty extends PenaltyEvent {
-  final String id;
-  FetchPenalty({required this.id});
-}
-
 class FetchPenaltyByOfficer extends PenaltyEvent {
-  final int officerId;
-  FetchPenaltyByOfficer({required this.officerId});
+  FetchPenaltyByOfficer();
 }
 
 class UpdatePenalty extends PenaltyEvent {

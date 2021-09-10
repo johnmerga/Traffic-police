@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/blocs/help/help.dart';
+import 'package:traffic_police/blocs/penalty/penalty.dart';
 import 'package:traffic_police/presentation/screens/Login/login.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/add_officer/Add_Officer.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/admin_home.dart';
@@ -11,12 +14,15 @@ import 'package:traffic_police/presentation/screens/admin_home_page/officers_lis
 import 'package:traffic_police/presentation/screens/admin_home_page/penalties_list/Penalties_List_Admin.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/penalties_list/penalty_detail/Penalty_Detail_Admin.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/recent/Recent_List_Admin.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/accepted_help_list/Accepted_Help_List_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/add_help/ask_help.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/add_penalities/add_penalties.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/edit_profile_page.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/profile_page.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/help_list/Help_List_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/help_list/help_detail/Help_Detail_Officer.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/my_help_list/My_Help_List_Officer.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/my_help_list/help_detail/My_Help_Detail_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/officer_home.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
@@ -25,7 +31,7 @@ import 'package:traffic_police/presentation/screens/officer_home_page/recent/Rec
 class RouteGenerator {
   static const String loginPage = "/";
   static const String officerHome =
-      "/presentation/presentation/screens/officer_home_page/officer_home";
+      "/presentation/screens/officer_home_page/officer_home";
   static const String adminHome =
       "/presentation/screens/admin_home_page/admin_home";
   static const String addOfficer =
@@ -47,6 +53,10 @@ class RouteGenerator {
       "/presentation/screens/officer_home_page/penalties_list/penalty_detail/penalty_detail_officer";
   static const String help =
       "/presentation/screens/officer_home_page/help_list/Help_List";
+  static const String acceptedHelp =
+      "/presentation/screens/officer_home_page/accepted_help_list/Accepted_Help_List";
+  static const String myHelp =
+      "/presentation/screens/officer_home_page/my_help_list/My_Help_List";
   static const String helplistadmin =
       "/presentation/screens/admin_home_page/help_list/Help_List_Admin";
 
@@ -54,6 +64,8 @@ class RouteGenerator {
       "/presentation/screens/officer_home_page/add_help/ask_help";
   static const String helpdetailofficer =
       "/presentation/screens/officer_home_page/help_list/help_detail/Help_Dtail_Officer";
+  static const String myhelpdetailofficer =
+      "/presentation/screens/officer_home_page/my_help_list/help_detail/My_Help_Dtail_Officer";
   static const String helpdetailadmin =
       "/presentation/screens/admin_home_page/help_list/help_detail/Help_Dtail_Admin";
 
@@ -80,7 +92,13 @@ class RouteGenerator {
       case addOfficer:
         return MaterialPageRoute(builder: (_) => AddOfficer());
       case addPenalties:
-        return MaterialPageRoute(builder: (_) => AddPenalties());
+        return MaterialPageRoute(builder: (context) {
+          final args = (settings.arguments as AddPenaltiesArguments);
+          return BlocProvider.value(
+            value: BlocProvider.of<PenaltyBloc>(args.context),
+            child: AddPenalties(),
+          );
+        });
       case officerList:
         return MaterialPageRoute(builder: (_) => OfficerList());
       case officerDetail:
@@ -92,13 +110,43 @@ class RouteGenerator {
       case penaltyListOfficer:
         return MaterialPageRoute(builder: (_) => PenaltyListOfficer());
       case penaltyDetailOfficer:
-        return MaterialPageRoute(builder: (_) => PenaltyDetailOfficer());
+        return MaterialPageRoute(builder: (_) {
+          final args = (settings.arguments as PenaltyDetailOfficerArguments);
+          return BlocProvider.value(
+            value: BlocProvider.of<PenaltyBloc>(args.context),
+            child: PenaltyDetailOfficer(penalty: args.penalty),
+          );
+        });
       case help:
         return MaterialPageRoute(builder: (_) => HelpListOfficer());
+      case acceptedHelp:
+        return MaterialPageRoute(builder: (_) => AcceptedHelpListOfficer());
+      case myHelp:
+        return MaterialPageRoute(builder: (_) => MyHelpListOfficer());
       case addhelp:
-        return MaterialPageRoute(builder: (_) => AddHelp());
+        return MaterialPageRoute(builder: (context) {
+          final args = (settings.arguments as AskHelpArguments);
+          return BlocProvider.value(
+            value: BlocProvider.of<HelpBloc>(args.context),
+            child: AddHelp(),
+          );
+        });
       case helpdetailofficer:
-        return MaterialPageRoute(builder: (_) => HelpDetailOfficer());
+        return MaterialPageRoute(builder: (_) {
+          final args = (settings.arguments as HelpDetailOfficerArguments);
+          return BlocProvider.value(
+            value: BlocProvider.of<HelpBloc>(args.context),
+            child: HelpDetailOfficer(help: args.help),
+          );
+        });
+      case myhelpdetailofficer:
+        return MaterialPageRoute(builder: (_) {
+          final args = (settings.arguments as HelpDetailOfficerArguments);
+          return BlocProvider.value(
+            value: BlocProvider.of<HelpBloc>(args.context),
+            child: MyHelpDetailOfficer(help: args.help),
+          );
+        });
       case helplistadmin:
         return MaterialPageRoute(builder: (_) => HelpListAdmin());
 

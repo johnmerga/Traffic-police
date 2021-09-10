@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:traffic_police/blocs/authentication/auth_temp.dart';
+import 'package:traffic_police/blocs/help/help_bloc.dart';
+import 'package:traffic_police/blocs/penalty/penalty.dart';
 import 'package:traffic_police/data/data_provider/data_provider.dart';
 import 'package:traffic_police/data/repository/all_repository.dart';
 import 'package:traffic_police/screen_generator.dart';
@@ -38,6 +40,17 @@ class Base extends StatelessWidget {
             create: (context) =>
                 AuthtempBloc(repository: authenticationRepository),
           ),
+          BlocProvider<PenaltyBloc>(
+            create: (context) => PenaltyBloc(),
+          ),
+          BlocProvider<HelpBloc>(
+            create: (context) => HelpBloc(),
+          ),
+
+          // BlocProvider<PenaltyBloc>(
+          //   create: (context) =>
+          //       PenaltyBloc(),
+          // ),
         ],
         child: MaterialApp(
           theme: ThemeData(

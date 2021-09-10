@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:traffic_police/main.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:traffic_police/blocs/penalty/penalty.dart';
+import 'package:traffic_police/data/models/models.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
 import 'package:traffic_police/screen_generator.dart';
 
 class InputField extends StatefulWidget {
+  final List<Penalty> penalties;
+  InputField({required this.penalties});
   @override
   State<InputField> createState() => _InputFieldState();
 }
@@ -12,7 +17,7 @@ class _InputFieldState extends State<InputField> {
 
   final clearTxt = TextEditingController();
   bool _isHidden = true;
-  int count = 2;
+
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
@@ -25,42 +30,52 @@ class _InputFieldState extends State<InputField> {
     TextStyle penaltyTitle = Theme.of(context).textTheme.subtitle1!;
     TextStyle penaltyName = Theme.of(context).textTheme.subtitle2!;
 
-    return ListView.builder(
-        physics: ClampingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
-          return Card(
-            color: Colors.white,
-            elevation: 2.0,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.lightBlue,
-                child: Icon(Icons.receipt),
-              ),
-              title: Text(
-                "Penalty Title",
-                style: penaltyName,
-              ),
-              subtitle: Text(
-                "Officer Name",
-                style: penaltyTitle,
-              ),
-              trailing: IconButton(
-                  icon: Icon(
-                    Icons.delete,
+    return widget.penalties.isEmpty
+        ? Padding(
+            padding: EdgeInsets.only(top: 200),
+            child: Center(child: Text('No penalities yet')))
+        : ListView.builder(
+            physics: ClampingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: widget.penalties.length,
+            itemBuilder: (BuildContext context, int index) {
+              Penalty penalty = widget.penalties[index];
+              return Card(
+                color: Colors.white,
+                elevation: 2.0,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.lightBlue,
+                    child: Icon(Icons.receipt),
                   ),
-                  onPressed: () {
-                    debugPrint("Delete penalty");
-                  }),
-              onTap: () {
-                debugPrint("Listen ontap");
-                Navigator.pushNamed(
-                    context, RouteGenerator.penaltyDetailOfficer);
-              },
-            ),
-          );
-        });
+                  title: Text(
+                    "${penalty.description}",
+                    style: penaltyName,
+                  ),
+                  subtitle: Text(
+                    "${penalty.victimName} ${penalty.victimLastName}",
+                    style: penaltyTitle,
+                  ),
+                  trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                      ),
+                      onPressed: () {
+                        debugPrint("Delete penalty");
+
+                        BlocProvider.of<PenaltyBloc>(context)
+                            .add(DeletePenalty(penalty: penalty));
+                      }),
+                  onTap: () {
+                    debugPrint("Listen ontap");
+                    Navigator.pushNamed(
+                        context, RouteGenerator.penaltyDetailOfficer,
+                        arguments: PenaltyDetailOfficerArguments(
+                            penalty: penalty, context: context));
+                  },
+                ),
+              );
+            });
   }
 }

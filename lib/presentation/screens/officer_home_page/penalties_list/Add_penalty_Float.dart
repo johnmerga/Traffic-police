@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:traffic_police/screen_generator.dart';
-
 
 class Add_Penalty_Float extends StatelessWidget {
+  final VoidCallback onTap;
+  Add_Penalty_Float({required this.onTap});
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {
-        Navigator.pushNamed(context, RouteGenerator.addPenalties);
-      },
+      onPressed: onTap,
       tooltip: 'Add Officers',
       child: Icon(Icons.add),
     );

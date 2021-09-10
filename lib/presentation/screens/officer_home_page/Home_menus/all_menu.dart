@@ -26,19 +26,26 @@ class All_menu extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 child: Card(
-                    shadowColor: colorCustom1,
-                    elevation: 20,
-                    color: colorCustom1L,
-                    shape: roundedShape,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Stats of the week',
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
-                    )),
+                  shadowColor: colorCustom1,
+                  elevation: 20,
+                  color: colorCustom1L,
+                  shape: roundedShape,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: roundedShape,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteGenerator.acceptedHelp);
+                    },
+                    child: homeBtnContainer(
+                      btnNmae: 'Accepted Helps',
+                      icon: Icon(
+                        Icons.help,
+                        size: 45,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 15),
@@ -84,7 +91,7 @@ class All_menu extends StatelessWidget {
                         Navigator.pushNamed(context, RouteGenerator.help);
                       },
                       child: homeBtnContainer(
-                        btnNmae: 'Help',
+                        btnNmae: 'Helps',
                         icon: Icon(
                           Icons.help,
                           size: 45,
@@ -102,12 +109,12 @@ class All_menu extends StatelessWidget {
                         shape: roundedShape,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, RouteGenerator.recent);
+                        Navigator.pushNamed(context, RouteGenerator.myHelp);
                       },
                       child: homeBtnContainer(
-                        btnNmae: 'Recent',
+                        btnNmae: 'My Helps',
                         icon: Icon(
-                          Icons.format_list_bulleted,
+                          Icons.help,
                           size: 45,
                         ),
                       ),

@@ -2,22 +2,26 @@ import 'package:equatable/equatable.dart';
 import 'package:traffic_police/data/models/models.dart';
 
 abstract class PenaltyState extends Equatable {
-  final List<Penalty> penalties;
-  PenaltyState({this.penalties = const []});
+  PenaltyState();
   @override
   List<Object> get props => [];
 }
 
 class PenaltyInitial extends PenaltyState {}
 
-class PenaltyOperationFailure extends PenaltyState {
-  final String errMsg;
-  PenaltyOperationFailure({required this.errMsg});
+class PenaltyLoadingState extends PenaltyState {}
+
+class PenaltyLoadedState extends PenaltyState {
+  final Penalty panlity;
+  PenaltyLoadedState({required this.panlity});
 }
 
-class PenaltyOperationSuccess extends PenaltyState {
-  PenaltyOperationSuccess({required List<Penalty> penalties})
-      : super(penalties: penalties);
+class PenaltyListLoadedState extends PenaltyState {
+  final List<Penalty> panalties;
+  PenaltyListLoadedState({required this.panalties});
 }
 
-class PenaltyLoading extends PenaltyState {}
+class PenaltyErrorState extends PenaltyState {
+  final String message;
+  PenaltyErrorState({required this.message});
+}

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:traffic_police/data/data_provider/user_secure_storage.dart';
 import 'package:traffic_police/data/models/models.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
@@ -45,6 +46,8 @@ class AuthenticationDataProvider {
 
       // storeing jwt value
       storeJwt(dataMap['jwt']);
+      final sec = UserSecureStorage.setToken(token: dataMap['jwt']);
+       token = await UserSecureStorage.getToken();
 
       // Officer result = Officer(
       //   id: officer_map['_id'] ?? "",

@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:traffic_police/data/models/models.dart';
+import 'package:traffic_police/data/models/penality_payload.dart';
 import 'package:traffic_police/main.dart';
 
 class InputField extends StatefulWidget {
-  const InputField({Key? key}) : super(key: key);
+  InputField();
   @override
   State<InputField> createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
   // variables
-  final clearTxt = TextEditingController();
+
+  final clrdescription = TextEditingController();
+  final clrfname = TextEditingController();
+  final clrlname = TextEditingController();
+  final clrlicencenumber = TextEditingController();
+  final clrplatenumber = TextEditingController();
+  final clrsubcity = TextEditingController();
+  final clramount = TextEditingController();
+
   bool _isHidden = true;
   DateTime selectedDate = DateTime.now();
-  final _formKey = GlobalKey<FormState>();
 
   Future<void> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -20,25 +30,35 @@ class _InputFieldState extends State<InputField> {
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
         lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate) {
+      var penaltyProvider = Provider.of<PenaltyPayload>(context, listen: false);
+      Penalty penalty = penaltyProvider.penalty;
+      penaltyProvider.updatePenalty(penalty.copyWith(dateOfIssue: picked));
       setState(() {
         selectedDate = picked;
       });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var penaltyProvider = Provider.of<PenaltyPayload>(context, listen: true);
+    Penalty penalty = penaltyProvider.penalty;
+    if (clrdescription.text.isEmpty) clrdescription.text = penalty.description;
+    if (clrfname.text.isEmpty) clrfname.text = penalty.victimName;
+    if (clrlname.text.isEmpty) clrlname.text = penalty.victimLastName;
+    if (clrlicencenumber.text.isEmpty)
+      clrlicencenumber.text = penalty.license_number;
+    if (clrplatenumber.text.isEmpty) clrplatenumber.text = penalty.plate_number;
+    if (clrsubcity.text.isEmpty) clrsubcity.text = penalty.subcity;
+    if (clramount.text.isEmpty)
+      clramount.text = penalty.penalty_in_birr.toString();
+    selectedDate = penalty.dateOfIssue;
     // toggle obscureText
 
-    // clears input text
-    void clearInput() {
-      clearTxt.clear();
-    }
-
     return Form(
-      key: _formKey,
+      key: penaltyProvider.formKey,
       child: ListView(
-        physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         children: [
@@ -53,10 +73,6 @@ class _InputFieldState extends State<InputField> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text("Select Date Of Issue"),
-                SizedBox(
-                  width: 15,
-                ),
                 TextButton(
                   onPressed: () => _selectDate(context),
                   child: Icon(Icons.calendar_today),
@@ -64,35 +80,6 @@ class _InputFieldState extends State<InputField> {
                 SizedBox(width: 10),
                 Text("${selectedDate.toLocal()}".split(' ')[0]),
               ],
-            ),
-          ),
-
-          //Title input
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Title",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
-              ),
             ),
           ),
 
@@ -106,16 +93,25 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clrdescription,
+              onChanged: (value) {
+                penaltyProvider
+                    .updatePenalty(penalty.copyWith(description: value));
+              },
+              validator: (value) {
+                if (penalty.description.isEmpty) {
+                  return 'Please enter description';
+                }
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "Description",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearDescription(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
@@ -131,16 +127,25 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clrfname,
+              onChanged: (value) {
+                penaltyProvider
+                    .updatePenalty(penalty.copyWith(victimName: value));
+              },
+              validator: (value) {
+                if (penalty.victimName.isEmpty) {
+                  return 'Please enter first name';
+                }
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "Driver's First Name",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearFname(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
@@ -156,16 +161,25 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clrlname,
+              onChanged: (value) {
+                penaltyProvider
+                    .updatePenalty(penalty.copyWith(victimLastName: value));
+              },
+              validator: (value) {
+                if (penalty.victimLastName.isEmpty) {
+                  return 'Please enter last name';
+                }
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "Driver's Last Name",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearLname(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
@@ -180,16 +194,25 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clrlicencenumber,
+              onChanged: (value) {
+                penaltyProvider
+                    .updatePenalty(penalty.copyWith(license_number: value));
+              },
+              validator: (value) {
+                if (penalty.license_number.isEmpty) {
+                  return 'Please enter license number';
+                }
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "Licence Number",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearLicence(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
@@ -204,16 +227,25 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clrplatenumber,
+              onChanged: (value) {
+                penaltyProvider
+                    .updatePenalty(penalty.copyWith(plate_number: value));
+              },
+              validator: (value) {
+                if (penalty.plate_number.isEmpty) {
+                  return 'Please enter plate number';
+                }
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "Plate Number",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearPlate(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
@@ -229,16 +261,24 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clrsubcity,
+              onChanged: (value) {
+                penaltyProvider.updatePenalty(penalty.copyWith(subcity: value));
+              },
+              validator: (value) {
+                if (penalty.subcity.isEmpty) {
+                  return 'Please enter sub city';
+                }
+                return null;
+              },
               decoration: InputDecoration(
-                hintText: "Driver's Full Name",
+                hintText: "Sub City",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearSubcity(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
@@ -253,31 +293,30 @@ class _InputFieldState extends State<InputField> {
               ),
             )),
             child: TextFormField(
-              validator: (value) {},
-              controller: clearTxt,
+              controller: clramount,
+              onChanged: (value) {
+                penaltyProvider.updatePenalty(
+                    penalty.copyWith(penalty_in_birr: int.parse(value)));
+              },
+              validator: (value) {
+                if (penalty.penalty_in_birr <= 0) {
+                  return 'Please enter valid amount ';
+                }
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "Penalty amount in ETB",
                 hintStyle: TextStyle(color: Colors.grey),
                 border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+                // suffix: IconButton(
+                //   onPressed: () => clearAmount(),
+                //   icon: Icon(Icons.clear),
+                // ),
               ),
             ),
           ),
         ],
       ),
     );
-  }
-
-  void validateform() {
-    if (_formKey.currentState!.validate()) {
-      // If the form is valid, display a snackbar. In the real world,
-      // you'd often call a server or save the information in a database.
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Processing Data')),
-      );
-    }
   }
 }

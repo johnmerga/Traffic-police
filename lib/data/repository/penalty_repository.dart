@@ -22,14 +22,14 @@ class PenaltyRepository {
     return await dataProvider.create(penalty);
   }
 
-  Future<Penalty> update(Penalty penalty) async {
+  Future<void> update(Penalty penalty) async {
     return await dataProvider.update(penalty);
   }
 
-  Future<List<Penalty>> fetchAll(String id) async {
+  Future<List<Penalty>> fetchOfficerPenalties() async {
     // return mockPenalties;
     // return this.dataProvider.fetchAll(id);
-    return await dataProvider.fetchAll(id);
+    return await dataProvider.fetchOfficerPenalties();
   }
 
   Future<void> delete(String id) async {

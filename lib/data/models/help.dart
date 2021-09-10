@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Help extends Equatable {
-  final int id;
+  final String id;
   final String officerId;
   final bool findAssistance;
   final String subcity;
@@ -17,23 +17,41 @@ class Help extends Equatable {
   });
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      // '_id': id,
       'officerId': officerId,
-      'findAssistance': findAssistance,
+      'findAssistance': findAssistance.toString(),
       'subcity': subcity,
       'description': description,
-      'date': date,
+      'date': date.toIso8601String(),
     };
+  }
+
+  Help copyWith({
+    String? id,
+    String? officerId,
+    bool? findAssistance,
+    String? subcity,
+    String? description,
+    DateTime? date,
+  }) {
+    return Help(
+      id: id ?? this.id,
+      officerId: officerId ?? this.officerId,
+      findAssistance: findAssistance ?? this.findAssistance,
+      subcity: subcity ?? this.subcity,
+      description: description ?? this.description,
+      date: date ?? this.date,
+    );
   }
 
   factory Help.fromJson(Map<String, dynamic> json) {
     return Help(
-      id: json['id'],
+      id: json['_id'],
       officerId: json['officerId'],
       findAssistance: json['findAssistance'],
       subcity: json['subcity'],
       description: json['description'],
-      date: json['date'],
+      date: DateTime.parse(json['date']),
     );
   }
 

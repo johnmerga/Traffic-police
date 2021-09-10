@@ -12,8 +12,7 @@ class Penalty extends Equatable {
   final int penalty_in_birr;
   final DateTime dateOfIssue;
 
-  Penalty
-({
+  Penalty({
     required this.id,
     required this.officerId,
     required this.subcity,
@@ -25,25 +24,49 @@ class Penalty extends Equatable {
     required this.penalty_in_birr,
     required this.dateOfIssue,
   });
+  Penalty copyWith({
+    String? id,
+    String? officerId,
+    String? subcity,
+    String? victimName,
+    String? victimLastName,
+    String? license_number,
+    String? plate_number,
+    String? description,
+    int? penalty_in_birr,
+    DateTime? dateOfIssue,
+  }) {
+    return Penalty(
+      id: id ?? this.id,
+      officerId: officerId ?? this.officerId,
+      subcity: subcity ?? this.subcity,
+      victimName: victimName ?? this.victimName,
+      victimLastName: victimLastName ?? this.victimLastName,
+      license_number: license_number ?? this.license_number,
+      plate_number: plate_number ?? this.plate_number,
+      description: description ?? this.description,
+      penalty_in_birr: penalty_in_birr ?? this.penalty_in_birr,
+      dateOfIssue: dateOfIssue ?? this.dateOfIssue,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
-      '_id': id,
+      // '_id': id,
       'officerId': officerId,
-      'subcity': 'subcity',
+      'subcity': subcity,
       'victimName': victimName,
       'victimLastName': victimLastName,
       'license_number': license_number,
       'plate_number': plate_number,
       'description': description,
-      'penalty_in_birr': penalty_in_birr,
-      'dateOfIssue': dateOfIssue,
+      'penalty_in_birr': penalty_in_birr.toString(),
+      'dateOfIssue': dateOfIssue.toIso8601String(),
     };
   }
 
-  factory Penalty
-.fromJson(Map<String, dynamic> json) {
-    return Penalty 
-  (
+  factory Penalty.fromJson(Map<String, dynamic> json) {
+    return Penalty(
         id: json['_id'],
         officerId: json['officerId'],
         subcity: json['subcity'],
@@ -53,7 +76,7 @@ class Penalty extends Equatable {
         plate_number: json['plate_number'],
         description: json['description'],
         penalty_in_birr: json['penalty_in_birr'],
-        dateOfIssue: json['dateOfIssue']);
+        dateOfIssue: DateTime.parse(json['dateOfIssue']));
   }
 
   @override

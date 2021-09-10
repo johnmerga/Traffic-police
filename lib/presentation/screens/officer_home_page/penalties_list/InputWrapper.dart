@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:traffic_police/data/models/models.dart';
 
 import 'InputField.dart';
 
 class InputWrapper extends StatelessWidget {
+  final List<Penalty> penalties;
+  InputWrapper({required this.penalties});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +18,9 @@ class InputWrapper extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: InputField(),
+            child: InputField(
+              penalties: penalties,
+            ),
           ),
           SizedBox(
             height: 30,

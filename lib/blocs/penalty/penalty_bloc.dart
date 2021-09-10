@@ -1,62 +1,73 @@
 import 'dart:async';
 import 'package:traffic_police/blocs/penalty/penalty.dart';
+import 'package:traffic_police/data/data_provider/data_provider.dart';
+import 'package:traffic_police/data/models/models.dart';
 import 'package:traffic_police/data/repository/penalty_repository.dart';
 import 'package:bloc/bloc.dart';
 
 class PenaltyBloc extends Bloc<PenaltyEvent, PenaltyState> {
-  PenaltyBloc({required this.repository}) : super(PenaltyInitial());
-  final PenaltyRepository repository;
+  PenaltyBloc() : super(PenaltyInitial());
+  final PenaltyRepository repository = PenaltyRepository(PenaltyDataProvider());
   @override
   Stream<PenaltyState> mapEventToState(
     PenaltyEvent event,
   ) async* {
-    if (event is FetchPenalty) {
-      yield await _handlePenaltyFetch(event);
-    } else if (event is CreatePenalty) {
-      yield await _handlePenaltyCreate(event);
+    if (event is FetchPenaltyByOfficer) {
+      yield* await _handlePenaltyFetch(event);
     } else if (event is DeletePenalty) {
-      yield await _handlePenaltyDelete(event);
+      yield* await _handlePenaltyDelete(event);
     } else if (event is UpdatePenalty) {
-      yield await _handlePenaltyUpdate(event);
+      yield* await _handlePenaltyUpdate(event);
+    } else if (event is CreatePenalty) {
+      yield* await _handlePenaltyCreate(event);
     }
   }
 
-  Future<PenaltyState> _handlePenaltyFetch(FetchPenalty event) async {
+  Stream<PenaltyState> _handlePenaltyFetch(FetchPenaltyByOfficer event) async* {
     try {
-      final penalties = await repository.fetchAll(event.id);
-      return PenaltyOperationSuccess(penalties: penalties);
+      yield PenaltyLoadingState();
+      final penalties = await repository.fetchOfficerPenalties();
+      yield PenaltyListLoadedState(panalties: penalties);
     } catch (e) {
-      return PenaltyOperationFailure(errMsg: e.toString());
+      yield PenaltyErrorState(message: e.toString());
     }
   }
 
-  Future<PenaltyState> _handlePenaltyCreate(CreatePenalty event) async {
+  Stream<PenaltyState> _handlePenaltyCreate(CreatePenalty event) async* {
     try {
-      await repository.create(event.penalty);
-      final penalties = await repository.fetchAll(event.penalty.officerId);
-      return PenaltyOperationSuccess(penalties: penalties);
+      Penalty penalty = await repository.create(event.penalty);
+      final _state = (state as PenaltyListLoadedState);
+      _state.panalties.add(penalty);
+      yield PenaltyLoadingState();
+      yield PenaltyListLoadedState(panalties: _state.panalties);
     } catch (e) {
-      return PenaltyOperationFailure(errMsg: e.toString());
+      yield PenaltyErrorState(message: e.toString());
     }
   }
 
-  Future<PenaltyState> _handlePenaltyUpdate(UpdatePenalty event) async {
+  Stream<PenaltyState> _handlePenaltyUpdate(UpdatePenalty event) async* {
     try {
       await repository.update(event.penalty);
-      final penalties = await repository.fetchAll(event.penalty.officerId);
-      return PenaltyOperationSuccess(penalties: penalties);
+      final _state = (state as PenaltyListLoadedState);
+      final index = _state.panalties
+          .indexWhere((element) => element.id == event.penalty.id);
+      _state.panalties[index] = event.penalty;
+      yield PenaltyLoadingState();
+      yield PenaltyListLoadedState(panalties: _state.panalties);
     } catch (e) {
-      return PenaltyOperationFailure(errMsg: e.toString());
+      yield PenaltyErrorState(message: e.toString());
     }
   }
 
-  Future<PenaltyState> _handlePenaltyDelete(DeletePenalty event) async {
+  Stream<PenaltyState> _handlePenaltyDelete(DeletePenalty event) async* {
     try {
       await repository.delete(event.penalty.id);
-      final penalties = await repository.fetchAll(event.penalty.officerId);
-      return PenaltyOperationSuccess(penalties: penalties);
+      final _state = (state as PenaltyListLoadedState);
+      _state.panalties.removeWhere((element) => element.id == event.penalty.id);
+      yield PenaltyLoadingState();
+      yield PenaltyListLoadedState(panalties: _state.panalties);
     } catch (e) {
-      return PenaltyOperationFailure(errMsg: e.toString());
+      yield PenaltyErrorState(message: e.toString());
     }
   }
 }
