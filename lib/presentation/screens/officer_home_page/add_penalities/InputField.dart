@@ -38,6 +38,7 @@ class _InputFieldState extends State<InputField> {
     return Form(
       key: _formKey,
       child: ListView(
+        physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         children: [

@@ -9,65 +9,48 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   // variables
-
-  bool _isHidden = true;
-  int count = 12;
+  int count = 17;
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
 
-    // clears input text
-
-    TextStyle penaltyTitle = Theme.of(context).textTheme.subtitle1!;
-    TextStyle penaltyName = Theme.of(context).textTheme.subtitle2!;
-    TextStyle penaltyDate = Theme.of(context).textTheme.subtitle2!;
+    TextStyle officerName = Theme.of(context).textTheme.subtitle2!;
+    TextStyle helpLocation = Theme.of(context).textTheme.subtitle2!;
 
     return ListView.builder(
         physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
+        itemBuilder: (context, count) {
           return Card(
             color: Colors.white,
             elevation: 2.0,
             child: ListTile(
-              minVerticalPadding: 10,
+              minVerticalPadding: 15,
               leading: CircleAvatar(
                 backgroundColor: Colors.lightBlue,
-                child: Icon(Icons.receipt),
+                child: Icon(Icons.help),
               ),
               title: Align(
                 alignment: Alignment.centerLeft,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Penalty Title",
-                      style: penaltyTitle,
-                    ),
-                    Text(
                       "Officer Name",
-                      style: penaltyName,
+                      style: officerName,
                     ),
                     Text(
-                      "Officer Date",
-                      style: penaltyDate,
+                      "Location",
+                      style: helpLocation,
                     ),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
-              trailing: IconButton(
-                  icon: Icon(
-                    Icons.delete,
-                  ),
-                  onPressed: () {
-                    debugPrint("Delete penalty");
-                  }),
               onTap: () {
                 debugPrint("Listen ontap");
-                Navigator.pushReplacementNamed(
-                    context, RouteGenerator.penaltyDetailOfficer);
+                Navigator.pushNamed(context, RouteGenerator.helpdetailadmin);
               },
             ),
           );

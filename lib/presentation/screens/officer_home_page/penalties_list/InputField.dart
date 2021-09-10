@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:traffic_police/main.dart';
 import 'package:traffic_police/screen_generator.dart';
 
-
 class InputField extends StatefulWidget {
   @override
   State<InputField> createState() => _InputFieldState();
@@ -27,6 +26,7 @@ class _InputFieldState extends State<InputField> {
     TextStyle penaltyName = Theme.of(context).textTheme.subtitle2!;
 
     return ListView.builder(
+        physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: count,

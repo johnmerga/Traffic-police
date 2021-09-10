@@ -100,9 +100,34 @@ class All_admin_menu extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: roundedShape,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RouteGenerator.recentlistadmin);
+                      },
                       child: homeBtnContainer(
                         btnNmae: 'Recent',
+                        icon: Icon(
+                          Icons.format_list_bulleted,
+                          size: 45,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    shadowColor: colorCustom1,
+                    elevation: 20,
+                    color: colorCustom1L,
+                    shape: roundedShape,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: roundedShape,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RouteGenerator.helplistadmin);
+                      },
+                      child: homeBtnContainer(
+                        btnNmae: 'Help',
                         icon: Icon(
                           Icons.format_list_bulleted,
                           size: 45,

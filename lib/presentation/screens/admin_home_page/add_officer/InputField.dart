@@ -65,6 +65,7 @@ class _InputFieldState extends State<InputField> {
     }
 
     return ListView(
+      physics: ClampingScrollPhysics(),
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       children: <Widget>[

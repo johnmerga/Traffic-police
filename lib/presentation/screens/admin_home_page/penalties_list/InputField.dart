@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:traffic_police/main.dart';
+import 'package:traffic_police/screen_generator.dart';
 
 
-import '../../../../screen_generator.dart';
+
 
 class InputField extends StatefulWidget {
   @override
@@ -13,8 +13,8 @@ class _InputFieldState extends State<InputField> {
   // variables
 
   final clearTxt = TextEditingController();
-  bool _isHidden = true;
-  int count = 2;
+ // bool _isHidden = true;
+  int count = 15;
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
@@ -28,6 +28,7 @@ class _InputFieldState extends State<InputField> {
     TextStyle penaltyName = Theme.of(context).textTheme.subtitle2!;
 
     return ListView.builder(
+        physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: count,

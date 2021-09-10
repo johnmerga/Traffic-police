@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_police/main.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/help_list/Add_Help_Float.dart';
 import 'package:traffic_police/presentation/widget/use_again.dart';
 
 import 'Header.dart';
 import 'InputWrapper.dart';
 
-class Help extends StatefulWidget {
+class HelpListOfficer extends StatefulWidget {
   @override
-  State<Help> createState() => _HelpState();
+  State<HelpListOfficer> createState() => _HelpListOfficerState();
 }
 
-class _HelpState extends State<Help> {
+class _HelpListOfficerState extends State<HelpListOfficer> {
   @override
   Widget build(BuildContext context) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
-      appBar: usableAppbar(isHome: false, name: "Ask-Help"),
+      appBar: usableAppbar(isHome: false, name: "Asked Helps"),
 
-      // resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -30,7 +31,7 @@ class _HelpState extends State<Help> {
           children: <Widget>[
             if (!isKeyboard)
               SizedBox(
-                height: 80,
+                height: 20,
               ),
             if (!isKeyboard) Header(),
             Expanded(
@@ -44,7 +45,8 @@ class _HelpState extends State<Help> {
                 ),
                 child: InputWrapper(),
               ),
-            )
+            ),
+            Add_Help_Float(),
           ],
         ),
       ),

@@ -3,14 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:traffic_police/presentation/screens/Login/login.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/add_officer/Add_Officer.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/admin_home.dart';
+import 'package:traffic_police/presentation/screens/admin_home_page/help_list/Help_List_Admin.dart';
+import 'package:traffic_police/presentation/screens/admin_home_page/help_list/help_detail/Help_Detail_Admin.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/officers_list/Officers_List.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/officers_list/officer_detail/Officer_Detail.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/penalties_list/Penalties_List_Admin.dart';
 import 'package:traffic_police/presentation/screens/admin_home_page/penalties_list/penalty_detail/Penalty_Detail_Admin.dart';
+import 'package:traffic_police/presentation/screens/admin_home_page/recent/Recent_List_Admin.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/add_help/ask_help.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/add_penalities/add_penalties.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/edit_profile_page.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/drawer/profile_page.dart';
-import 'package:traffic_police/presentation/screens/officer_home_page/help/help.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/help_list/Help_List_Officer.dart';
+import 'package:traffic_police/presentation/screens/officer_home_page/help_list/help_detail/Help_Detail_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/officer_home.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
 import 'package:traffic_police/presentation/screens/officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
@@ -54,9 +59,23 @@ class RouteGenerator {
       "/presentation/screens/admin_home_page/penalties_list/penalty_detail/penalty_detail_admin";
   static const String penaltyDetailOfficer =
       "/presentation/screens/officer_home_page/penalties_list/penalty_detail/penalty_detail_officer";
-  static const String help = "/screens/officer_home_page/help/help";
+  static const String help =
+      "/presentation/screens/officer_home_page/help_list/Help_List";
+  static const String helplistadmin =
+      "/presentation/screens/admin_home_page/help_list/Help_List_Admin";
+
+  static const String addhelp =
+      "/presentation/screens/officer_home_page/add_help/ask_help";
+  static const String helpdetailofficer =
+      "/presentation/screens/officer_home_page/help_list/help_detail/Help_Dtail_Officer";
+  static const String helpdetailadmin =
+      "/presentation/screens/admin_home_page/help_list/help_detail/Help_Dtail_Admin";
+
   static const String recent =
       "/presentation/screens/officer_home_page/recent/recent_list_officer";
+  static const String recentlistadmin =
+      "/presentation/screens/admin_home_page/recent/Recent_List_Admin";
+
   static const String profile =
       "/presentation/screens/officer_home_page/drawer/profile_page";
   static const String editprofile =
@@ -87,9 +106,22 @@ class RouteGenerator {
       case penaltyDetailOfficer:
         return MaterialPageRoute(builder: (_) => PenaltyDetailOfficer());
       case help:
-        return MaterialPageRoute(builder: (_) => Help());
+        return MaterialPageRoute(builder: (_) => HelpListOfficer());
+      case addhelp:
+        return MaterialPageRoute(builder: (_) => AddHelp());
+      case helpdetailofficer:
+        return MaterialPageRoute(builder: (_) => HelpDetailOfficer());
+      case helplistadmin:
+        return MaterialPageRoute(builder: (_) => HelpListAdmin());
+
+      case helpdetailadmin:
+        return MaterialPageRoute(builder: (_) => HelpDetailAdmin());
+
       case recent:
         return MaterialPageRoute(builder: (_) => RecentListOfficer());
+      case recentlistadmin:
+        return MaterialPageRoute(builder: (_) => RecentListAdmin());
+
       case profile:
         return MaterialPageRoute(builder: (_) => ProfilePage());
       case editprofile:

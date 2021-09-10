@@ -26,6 +26,7 @@ class _InputFieldState extends State<InputField> {
     TextStyle officerTitle = Theme.of(context).textTheme.subtitle2!;
 
     return ListView.builder(
+        physics: ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: count,
