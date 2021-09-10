@@ -10,8 +10,8 @@ class Button extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           // Navigator.of(context).pushNamed(RouteGenerator.officerHome);
-          //Navigator.pushReplacementNamed(context, RouteGenerator.officerHome);
-          Navigator.pushReplacementNamed(context, RouteGenerator.adminHome);
+          Navigator.pushReplacementNamed(context, RouteGenerator.officerHome);
+          //Navigator.pushReplacementNamed(context, RouteGenerator.adminHome);
         },
         child: Text(
           "Login",

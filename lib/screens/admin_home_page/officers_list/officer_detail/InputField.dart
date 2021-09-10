@@ -212,6 +212,7 @@ class _InputFieldState extends State<InputField> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              Text("Starting Date"),
               TextButton(
                 onPressed: () => _selectDate(context),
                 child: Icon(Icons.calendar_today),

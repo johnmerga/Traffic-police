@@ -4,12 +4,12 @@ import 'package:traffic_police/main.dart';
 import 'Header.dart';
 import 'InputWrapper.dart';
 
-class OfficerList extends StatefulWidget {
+class OfficerDetail extends StatefulWidget {
   @override
-  State<OfficerList> createState() => _OfficerListState();
+  State<OfficerDetail> createState() => _OfficerDetailState();
 }
 
-class _OfficerListState extends State<OfficerList> {
+class _OfficerDetailState extends State<OfficerDetail> {
   @override
   Widget build(BuildContext context) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;

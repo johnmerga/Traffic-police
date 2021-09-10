@@ -7,8 +7,8 @@ class InputWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 5),
-      child: Column(
+      padding: EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 30),
+      child: ListView(
         children: <Widget>[
           SizedBox(
             height: 30,

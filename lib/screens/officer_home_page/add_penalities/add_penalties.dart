@@ -16,36 +16,34 @@ class _AddPenaltiesState extends State<AddPenalties> {
 
     return Scaffold(
       //resizeToAvoidBottomInset: false,
-      body: Flexible(
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              colors: [colorCustom1, colorCustom4],
-            ),
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [colorCustom1, colorCustom4],
           ),
-          child: Column(
-            children: <Widget>[
-              if (!isKeyboard)
-                SizedBox(
-                  height: 50,
-                ),
-              if (!isKeyboard) Header(),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(100),
-                      topRight: Radius.circular(100),
-                    ),
+        ),
+        child: Column(
+          children: <Widget>[
+            if (!isKeyboard)
+              SizedBox(
+                height: 50,
+              ),
+            if (!isKeyboard) Header(),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(100),
+                    topRight: Radius.circular(100),
                   ),
-                  child: InputWrapper(),
                 ),
-              )
-            ],
-          ),
+                child: InputWrapper(),
+              ),
+            )
+          ],
         ),
       ),
     );

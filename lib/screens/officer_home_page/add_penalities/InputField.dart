@@ -33,172 +33,170 @@ class _InputFieldState extends State<InputField> {
       clearTxt.clear();
     }
 
-    return Expanded(
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: [
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () => _selectDate(context),
-                  child: Icon(Icons.calendar_today),
-                ),
-                SizedBox(width: 10),
-                Text("${selectedDate.toLocal()}".split(' ')[0]),
-              ],
+    return ListView(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      children: [
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
             ),
+          )),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextButton(
+                onPressed: () => _selectDate(context),
+                child: Icon(Icons.calendar_today),
+              ),
+              SizedBox(width: 10),
+              Text("${selectedDate.toLocal()}".split(' ')[0]),
+            ],
           ),
+        ),
 
-          //Title input
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextField(
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Title",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
-              ),
+        //Title input
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
             ),
-          ),
-
-          //Description input
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextField(
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Description",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+          )),
+          child: TextField(
+            controller: clearTxt,
+            decoration: InputDecoration(
+              hintText: "Title",
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              suffix: IconButton(
+                onPressed: () => clearInput(),
+                icon: Icon(Icons.clear),
               ),
             ),
           ),
+        ),
 
-          // Driver's full name input
-
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextField(
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Driver's Full Name",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+        //Description input
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
+            ),
+          )),
+          child: TextField(
+            controller: clearTxt,
+            decoration: InputDecoration(
+              hintText: "Description",
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              suffix: IconButton(
+                onPressed: () => clearInput(),
+                icon: Icon(Icons.clear),
               ),
             ),
           ),
+        ),
 
-          // Licence Number input
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextField(
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Licence Number",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+        // Driver's full name input
+
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
+            ),
+          )),
+          child: TextField(
+            controller: clearTxt,
+            decoration: InputDecoration(
+              hintText: "Driver's Full Name",
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              suffix: IconButton(
+                onPressed: () => clearInput(),
+                icon: Icon(Icons.clear),
               ),
             ),
           ),
+        ),
 
-          // Plate Number input
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextField(
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Plate Number",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+        // Licence Number input
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
+            ),
+          )),
+          child: TextField(
+            controller: clearTxt,
+            decoration: InputDecoration(
+              hintText: "Licence Number",
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              suffix: IconButton(
+                onPressed: () => clearInput(),
+                icon: Icon(Icons.clear),
               ),
             ),
           ),
+        ),
 
-          // Penalty amount input
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(
-                color: colorCustom1,
-              ),
-            )),
-            child: TextField(
-              controller: clearTxt,
-              decoration: InputDecoration(
-                hintText: "Penalty amount in ETB",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffix: IconButton(
-                  onPressed: () => clearInput(),
-                  icon: Icon(Icons.clear),
-                ),
+        // Plate Number input
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
+            ),
+          )),
+          child: TextField(
+            controller: clearTxt,
+            decoration: InputDecoration(
+              hintText: "Plate Number",
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              suffix: IconButton(
+                onPressed: () => clearInput(),
+                icon: Icon(Icons.clear),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+
+        // Penalty amount input
+        Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(
+              color: colorCustom1,
+            ),
+          )),
+          child: TextField(
+            controller: clearTxt,
+            decoration: InputDecoration(
+              hintText: "Penalty amount in ETB",
+              hintStyle: TextStyle(color: Colors.grey),
+              border: InputBorder.none,
+              suffix: IconButton(
+                onPressed: () => clearInput(),
+                icon: Icon(Icons.clear),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
