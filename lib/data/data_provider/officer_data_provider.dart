@@ -1,130 +1,127 @@
 import 'dart:convert';
-
-import 'package:traffic_police/data/models/models.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:traffic_police/data/data_provider/user_secure_storage.dart';
+import 'package:traffic_police/data/models/models.dart';
 
-class OfficerDataProvider {
-  final _baseUrl = 'http://192.168.122.1:5000/api/';
-  http.Client? httpClient;
-  String? token;
+class CourseDataProvider {
+  static final String _baseUrl = "http://192.168.122.1:5000/api/Officer";
 
   Future<String> getToken() async {
-    final storage = FlutterSecureStorage();
-    var token = await storage.read(key: "jwt_token");
+    var token = await UserSecureStorage.getToken();
+    print('token getter: $token');
     return "Bearer $token";
   }
 
-  Future<Officer> createOfficer(Officer officer) async {
-    final response = await http.post(
+  Future<Officer> create(Officer officer) async {
+    var tk = await getToken();
+    final http.Response response = await http.post(
       Uri.parse(_baseUrl),
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/json',
+        'authorization': '$tk'
       },
-      body: jsonEncode(<String, dynamic>{
-        '_id': officer.id,
-        '_isadmin': officer.is_admin,
-        'birthOfDate': officer.birthOfDate,
-        'firstName': officer.firstName,
-        'lastName': officer.lastName,
-        'position': officer.position,
-        'sex': officer.sex,
-        'state': officer.state,
-        'phoneNumber': officer.phoneNumber,
-        'email': officer.email,
-        'password': officer.password,
-        'startDate': officer.startDate,
-      }),
+      body: jsonEncode(
+        {
+          'isadmin': officer.is_admin,
+          'birthOfDate': officer.birthOfDate,
+          'firstName': officer.firstName,
+          'lastName': officer.lastName,
+          'position': officer.position,
+          'sex': officer.sex,
+          'state': officer.state,
+          'phoneNumber': officer.phoneNumber,
+          'email': officer.email,
+          'password': officer.password,
+          'startDate': officer.startDate,
+        },
+      ),
+    );
+    if (response.statusCode == 201) {
+      return Officer.fromJson(jsonDecode(response.body));
+    }
+    {
+      throw Exception("Failed to create course");
+    }
+  }
+
+  Future<Officer> fetchByCode() async {
+    var tk = await getToken();
+
+    final response = await http.get(
+      Uri.parse(_baseUrl),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'authorization': '$tk'
+      },
     );
 
     if (response.statusCode == 200) {
       return Officer.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to create Officer');
+      throw Exception("Fetching Course by code failed");
     }
   }
 
-  Future<List<Officer>> getOfficers() async {
-    try {
-      final response = await http.get(Uri.parse("$_baseUrl/Officers"));
-      if (response.statusCode == 200) {
-        final officers = jsonDecode(response.body) as List;
-        final result = officers.map((officer) {
-          var resultOfficer = Officer.fromJson(officer);
-          return resultOfficer;
-        }).toList();
-        return result;
-      } else {
-        throw Exception('Failed to load Officers');
-      }
-    } catch (err) {
-      print("the error is $err");
-      return [];
-    }
-  }
-
-  Future<void> updateOfficer(Officer officer) async {
-    token = await getToken();
-
-    final http.Response response = await http.put(
-      Uri.parse('$_baseUrl/Officers/${officer.id}'),
+  Future<List<Officer>> fetchAll() async {
+    var tk = await getToken();
+    final response = await http.get(
+      Uri.parse(_baseUrl),
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        "authorization": "$token",
+        'Content-Type': 'application/json',
+        'authorization': '$tk'
       },
-      body: jsonEncode(<String, dynamic>{
-        '_id': officer.id,
-        'isadmin': officer.is_admin,
-        'birthOfDate': officer.birthOfDate,
-        'firstName': officer.firstName,
-        'lastName': officer.lastName,
-        'position': officer.position,
-        'sex': officer.sex,
-        'state': officer.state,
-        'phoneNumber': officer.phoneNumber,
-        'email': officer.email,
-        'password': officer.password,
-        'startDate': officer.startDate,
-      }),
+    );
+    if (response.statusCode == 200) {
+      final officer = jsonDecode(response.body) as List;
+      return officer.map((_) => Officer.fromJson(_)).toList();
+    } else {
+      throw Exception("Could not fetch courses");
+    }
+  }
+
+  Future<Officer> update(String id, Officer officer) async {
+    var tk = await getToken();
+    final response = await http.put(
+      Uri.parse("$_baseUrl/$id"),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'authorization': '$tk'
+      },
+      body: jsonEncode(
+        {
+          'isadmin': officer.is_admin,
+          'birthOfDate': officer.birthOfDate,
+          'firstName': officer.firstName,
+          'lastName': officer.lastName,
+          'position': officer.position,
+          'sex': officer.sex,
+          'state': officer.state,
+          'phoneNumber': officer.phoneNumber,
+          'email': officer.email,
+          'password': officer.password,
+          'startDate': officer.startDate,
+        },
+      ),
     );
 
-    if (response.statusCode != 201) {
-      throw Exception('Failed to update Officer');
+    if (response.statusCode == 200) {
+      return Officer.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception("Could not update the course");
     }
-    Future<void> deleteOfficer(String id) async {
-      token = await getToken();
+  }
 
-      final http.Response response = await http.delete(
-        Uri.parse('$_baseUrl/Officers/$id'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          "authorization": "$token",
-        },
-      );
-
-      if (response.statusCode != 201) {
-        throw Exception('Failed to delete Officer');
-      }
+  Future<void> delete(String id) async {
+    var tk = await getToken();
+    final response = await http.delete(
+      Uri.parse("$_baseUrl/$id"),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'authorization': '$tk'
+      },
+    );
+    if (response.statusCode != 204) {
+      throw Exception("Field to delete the course");
     }
-    // Future<Officer> updateOfficerRole(String OfficerId, String roleId) async {
-    //   token = await getToken();
-
-    //   final response = await http.put(
-    //     Uri.parse('$_baseUrl/Officers/$OfficerId/is_admin'),
-    //     headers: <String, String>{
-    //       'Content-Type': 'application/json; charset=UTF-8',
-    //       "authorization": "$token",
-    //     },
-    //     body: jsonEncode(<String, dynamic>{
-    //       'role_id': roleId,
-    //     }),
-    //   );
-
-    //   if (response.statusCode == 200) {
-    //     return Officer.fromJson(jsonDecode(response.body));
-    //   } else {
-    //     throw Exception('Failed to create Officer');
-    //   }
-    // }
   }
 }

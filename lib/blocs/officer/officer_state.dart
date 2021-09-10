@@ -8,21 +8,15 @@ abstract class OfficerState extends Equatable {
   List<Object> get props => [];
 }
 
-class OfficerInitial extends OfficerState {}
+class OfficerLoading extends OfficerState {}
 
-class OfficerLoadingState extends OfficerState {}
+class OfficerOperationSuccess extends OfficerState {
+  final Iterable<Officer> officers;
 
-class OfficerLoadedState extends OfficerState {
-  final Officer officers;
-  OfficerLoadedState({required this.officers});
+  OfficerOperationSuccess([this.officers = const []]);
+
+  @override
+  List<Object> get props => [officers];
 }
 
-class OfficerListLoadedState extends OfficerState {
-  final List<Officer> officers;
-  OfficerListLoadedState({required this.officers});
-}
-
-class OfficerErrorState extends OfficerState {
-  final String message;
-  OfficerErrorState({required this.message});
-}
+class OfficerOperationFailure extends OfficerState {}
