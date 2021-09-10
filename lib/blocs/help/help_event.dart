@@ -1,4 +1,6 @@
-part of 'help_bloc.dart';
+
+
+import 'package:equatable/equatable.dart';
 
 abstract class HelpEvent extends Equatable {
   const HelpEvent();

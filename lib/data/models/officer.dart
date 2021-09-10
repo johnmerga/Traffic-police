@@ -17,7 +17,7 @@ class Officer extends Equatable {
         startDate,
       ];
 
-  final int id;
+  final String id;
   final bool is_admin;
   final String birthOfDate;
   final String firstName;
@@ -48,7 +48,7 @@ class Officer extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       '_id': id,
-      '_isadmin': is_admin,
+      'isadmin': is_admin,
       'birthOfDate': birthOfDate,
       'firstName': firstName,
       'lastName': lastName,
@@ -62,10 +62,10 @@ class Officer extends Equatable {
     };
   }
 
-  factory Officer.fromJson(Map<String, dynamic> json) {
+  static Officer fromJson(Map<String, dynamic> json) {
     return Officer(
         id: json['_id'],
-        is_admin: json['_isadmin'],
+        is_admin: json['isadmin'],
         birthOfDate: json['birthOfDate'],
         firstName: json['firstName'],
         lastName: json['lastName'],

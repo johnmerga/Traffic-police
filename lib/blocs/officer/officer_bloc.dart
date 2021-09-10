@@ -1,10 +1,6 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-
-part 'officer_event.dart';
-part 'officer_state.dart';
+import 'package:traffic_police/blocs/officer/officer.dart';
 
 class OfficerBloc extends Bloc<OfficerEvent, OfficerState> {
   OfficerBloc() : super(OfficerInitial());

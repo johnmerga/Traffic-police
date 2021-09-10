@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
-part 'auth_event.dart';
-part 'auth_state.dart';
+import 'package:traffic_police/blocs/authentication/bloc/authentication.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial());

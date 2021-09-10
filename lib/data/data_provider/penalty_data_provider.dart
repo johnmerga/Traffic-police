@@ -10,7 +10,7 @@ class PenaltyDataProvider {
     final http.Response response = await http.post(Uri.parse(_baseUrl),
         headers: <String, String>{"Content-Type": "application/json"},
         body: jsonEncode({
-          'id': penalty.id,
+          '_id': penalty.id,
           'officerId': penalty.officerId,
           'subcity': penalty.subcity,
           'victimName': penalty.victimName,
@@ -40,7 +40,7 @@ class PenaltyDataProvider {
     }
   }
 
-  Future<List<Penalty>> fetchAll(int id) async {
+  Future<List<Penalty>> fetchAll(String id) async {
     final response = await http.get(Uri.parse(_baseUrl));
     if (response.statusCode == 200) {
       final Penaltys = jsonDecode(response.body) as List;
@@ -77,7 +77,7 @@ class PenaltyDataProvider {
     }
   }
 
-  Future<void> delete(int id) async {
+  Future<void> delete(String id) async {
     final response = await http.delete(Uri.parse("$_baseUrl/${id}"));
     if (response.statusCode != 204) {
       throw Exception("Field to delete the Penalty");

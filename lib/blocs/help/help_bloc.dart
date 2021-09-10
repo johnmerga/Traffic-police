@@ -1,10 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-
-part 'help_event.dart';
-part 'help_state.dart';
+import 'package:traffic_police/blocs/help/help.dart';
 
 class HelpBloc extends Bloc<HelpEvent, HelpState> {
   HelpBloc() : super(HelpInitial());

@@ -38,6 +38,7 @@ dependencies:
   equatable: ^2.0.3
   http: any
   flutter_secure_storage: ^4.2.1
+  jwt_decode: ^0.3.1
   # google_fonts: ^2.1.0
 
 dev_dependencies:

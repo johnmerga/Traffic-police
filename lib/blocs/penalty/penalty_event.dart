@@ -1,4 +1,5 @@
-part of 'penalty_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:traffic_police/data/models/models.dart';
 
 abstract class PenaltyEvent extends Equatable {
   const PenaltyEvent();
@@ -18,7 +19,7 @@ class DeletePenalty extends PenaltyEvent {
 }
 
 class FetchPenalty extends PenaltyEvent {
-  final int id;
+  final String id;
   FetchPenalty({required this.id});
 }
 

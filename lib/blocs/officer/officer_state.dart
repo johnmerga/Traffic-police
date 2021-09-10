@@ -1,8 +1,8 @@
-part of 'officer_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class OfficerState extends Equatable {
   const OfficerState();
-  
+
   @override
   List<Object> get props => [];
 }

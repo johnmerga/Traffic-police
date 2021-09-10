@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class Penalty extends Equatable {
-  final int id;
-  final int officerId;
+  final String id;
+  final String officerId;
   final String subcity;
   final String victimName;
   final String victimLastName;
@@ -27,7 +27,7 @@ class Penalty extends Equatable {
   });
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      '_id': id,
       'officerId': officerId,
       'subcity': 'subcity',
       'victimName': victimName,

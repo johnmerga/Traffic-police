@@ -1,4 +1,5 @@
-part of 'penalty_bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:traffic_police/data/models/models.dart';
 
 abstract class PenaltyState extends Equatable {
   final List<Penalty> penalties;
@@ -18,7 +19,5 @@ class PenaltyOperationSuccess extends PenaltyState {
   PenaltyOperationSuccess({required List<Penalty> penalties})
       : super(penalties: penalties);
 }
-class PenaltyLoading extends PenaltyState {
 
-}
-
+class PenaltyLoading extends PenaltyState {}

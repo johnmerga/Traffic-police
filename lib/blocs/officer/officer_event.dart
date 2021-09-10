@@ -1,4 +1,4 @@
-part of 'officer_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class OfficerEvent extends Equatable {
   const OfficerEvent();
