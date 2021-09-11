@@ -4,12 +4,13 @@ import 'package:traffic_police/screens/Login/login.dart';
 import 'package:traffic_police/screens/admin_home_page/add_officer/Add_Officer.dart';
 import 'package:traffic_police/screens/officer_home_page/officer_home.dart';
 import 'package:traffic_police/screens/admin_home_page/admin_home.dart';
-
+import 'package:traffic_police/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
 import 'admin_home_page/officers_list/Officers_List.dart';
 import 'admin_home_page/officers_list/officer_detail/Officer_Detail.dart';
-import 'admin_home_page/penalties_list/Penalties_List.dart';
-import 'admin_home_page/penalties_list/penalty_detail/Penalty_Detail.dart';
+import 'admin_home_page/penalties_list/Penalties_List_Admin.dart';
+import 'admin_home_page/penalties_list/penalty_detail/Penalty_Detail_Admin.dart';
 import 'officer_home_page/add_penalities/add_penalties.dart';
+import 'officer_home_page/penalties_list/penalty_detail/Penalty_Detail_Officer.dart';
 
 class RouteGenerator {
   static const String loginPage = "/";
@@ -23,10 +24,15 @@ class RouteGenerator {
       "/screens/admin_home_page/officers_list/Officers_List";
   static const String officerDetail =
       "/screens/admin_home_page/officers_list/Officer_detail/Officer_detail";
-  static const String penaltyList =
-      "/screens/admin_home_page/officers_list/penalty_List";
-  static const String penaltyDetail =
-      "/screens/admin_home_page/penalties_list/penalty_detail/penalty_detail";
+  static const String penaltyListAdmin =
+      "/screens/admin_home_page/officers_list/penalty_List_Admin";
+  static const String penaltyListOfficer =
+      "/screens/officer_home_page/officers_list/penalty_List_Officer";
+
+  static const String penaltyDetailAdmin =
+      "/screens/admin_home_page/penalties_list/penalty_detail/penalty_detail_admin";
+  static const String penaltyDetailOfficer =
+      "/screens/officer_home_page/penalties_list/penalty_detail/penalty_detail_officer";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -44,10 +50,15 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OfficerList());
       case officerDetail:
         return MaterialPageRoute(builder: (_) => OfficerDetail());
-      case penaltyList:
-        return MaterialPageRoute(builder: (_) => PenaltyList());
-      case penaltyDetail:
-        return MaterialPageRoute(builder: (_) => PenaltyDetail());
+      case penaltyListAdmin:
+        return MaterialPageRoute(builder: (_) => PenaltyListAdmin());
+      case penaltyDetailAdmin:
+        return MaterialPageRoute(builder: (_) => PenaltyDetailAdmin());
+      case penaltyListOfficer:
+        return MaterialPageRoute(builder: (_) => PenaltyListOfficer());
+
+      case penaltyDetailOfficer:
+        return MaterialPageRoute(builder: (_) => PenaltyDetailOfficer());
 
       default:
         throw FormatException("Route was not found");

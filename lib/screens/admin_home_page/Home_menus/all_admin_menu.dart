@@ -80,7 +80,7 @@ class All_admin_menu extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.pushReplacementNamed(
-                            context, RouteGenerator.penaltyList);
+                            context, RouteGenerator.penaltyListAdmin);
                       },
                       child: homeBtnContainer(
                         btnNmae: 'Penalties',

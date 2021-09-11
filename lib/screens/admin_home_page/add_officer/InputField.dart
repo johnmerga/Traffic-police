@@ -8,7 +8,13 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   // variables
-  final clearTxt = TextEditingController();
+  final clrfname = TextEditingController();
+  final clrlname = TextEditingController();
+  final clrposition = TextEditingController();
+  final clrsex = TextEditingController();
+  final clrstate = TextEditingController();
+  final clrphonenumber = TextEditingController();
+  final clremail = TextEditingController();
   bool _isHidden = true;
 
   DateTime selectedDate = DateTime.now();
@@ -30,10 +36,34 @@ class _InputFieldState extends State<InputField> {
     // toggle obscureText
 
     // clears input text
-    /*void clearInput() {
-      clearTxt.clear();
+    void clearfname() {
+      clrfname.clear();
     }
-*/
+
+    void clearlname() {
+      clrlname.clear();
+    }
+
+    void clearposition() {
+      clrposition.clear();
+    }
+
+    void clearsex() {
+      clrsex.clear();
+    }
+
+    void clearstate() {
+      clrstate.clear();
+    }
+
+    void clearphonenumber() {
+      clrphonenumber.clear();
+    }
+
+    void clearemail() {
+      clremail.clear();
+    }
+
     return ListView(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
@@ -48,13 +78,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            controller: clrfname,
             decoration: InputDecoration(
               hintText: "First Name",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: clearTxt.clear,
+                onPressed: () => clearfname(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -71,13 +101,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            controller: clrlname,
             decoration: InputDecoration(
               hintText: "Last Name",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: clearTxt.clear,
+                onPressed: () => clearlname(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -117,13 +147,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            //controller: clearTxt,
+            controller: clrposition,
             decoration: InputDecoration(
               hintText: "Position",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearTxt.clear(),
+                onPressed: () => clearposition(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -140,13 +170,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            //controller: clearTxt,
+            controller: clrsex,
             decoration: InputDecoration(
               hintText: "Sex",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearTxt.clear(),
+                onPressed: () => clearsex(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -163,13 +193,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            //controller: clearTxt,
+            controller: clrstate,
             decoration: InputDecoration(
               hintText: "State",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearTxt.clear(),
+                onPressed: () => clearstate(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -186,13 +216,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            //controller: clearTxt,
+            controller: clrphonenumber,
             decoration: InputDecoration(
               hintText: "Phone Number",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearTxt.clear(),
+                onPressed: () => clearphonenumber(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -210,13 +240,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            //controller: clearTxt,
+            controller: clremail,
             decoration: InputDecoration(
               hintText: "Email",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearTxt.clear(),
+                onPressed: () => clearemail(),
                 icon: Icon(Icons.clear),
               ),
             ),

@@ -6,7 +6,7 @@ class Add_Penalty_Float extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Navigator.pushNamed(context, RouteGenerator.addOfficer);
+        Navigator.pushNamed(context, RouteGenerator.addPenalties);
       },
       tooltip: 'Add Officers',
       child: Icon(Icons.add),

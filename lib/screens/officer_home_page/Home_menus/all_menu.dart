@@ -60,7 +60,7 @@ class All_menu extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.pushReplacementNamed(
-                            context, RouteGenerator.penaltyList);
+                            context, RouteGenerator.penaltyListOfficer);
                       },
                       child: homeBtnContainer(
                         btnNmae: 'Penalties',
