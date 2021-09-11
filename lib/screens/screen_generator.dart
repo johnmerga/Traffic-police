@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:traffic_police/screens/Login/login.dart';
 import 'package:traffic_police/screens/admin_home_page/add_officer/Add_Officer.dart';
+import 'package:traffic_police/screens/officer_home_page/help/help.dart';
 import 'package:traffic_police/screens/officer_home_page/officer_home.dart';
 import 'package:traffic_police/screens/admin_home_page/admin_home.dart';
 import 'package:traffic_police/screens/officer_home_page/penalties_list/Penalties_List_Officer.dart';
@@ -33,6 +34,7 @@ class RouteGenerator {
       "/screens/admin_home_page/penalties_list/penalty_detail/penalty_detail_admin";
   static const String penaltyDetailOfficer =
       "/screens/officer_home_page/penalties_list/penalty_detail/penalty_detail_officer";
+  static const String help = "/screens/officer_home_page/help/help";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -56,9 +58,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PenaltyDetailAdmin());
       case penaltyListOfficer:
         return MaterialPageRoute(builder: (_) => PenaltyListOfficer());
-
       case penaltyDetailOfficer:
         return MaterialPageRoute(builder: (_) => PenaltyDetailOfficer());
+      case help:
+        return MaterialPageRoute(builder: (_) => Help());
 
       default:
         throw FormatException("Route was not found");

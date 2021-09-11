@@ -80,26 +80,10 @@ class All_menu extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: roundedShape,
                       ),
-                      onPressed: () {},
-                      child: homeBtnContainer(
-                        btnNmae: 'Report',
-                        icon: Icon(
-                          Icons.report_problem,
-                          size: 45,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: colorCustom1,
-                    elevation: 20,
-                    color: colorCustom1L,
-                    shape: roundedShape,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: roundedShape,
-                      ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, RouteGenerator.help);
+                      },
                       child: homeBtnContainer(
                         btnNmae: 'Help',
                         icon: Icon(

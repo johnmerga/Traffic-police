@@ -41,26 +41,14 @@ class _InputFieldState extends State<InputField> {
           children: <Widget>[
             //First name input
             Container(
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                  border: Border(
-                bottom: BorderSide(
-                  color: colorCustom1,
-                ),
-              )),
-              child: TextField(
-                controller: clearTxt,
-                decoration: InputDecoration(
-                  hintText: "First Name",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  suffix: IconButton(
-                    onPressed: () => clearInput(),
-                    icon: Icon(Icons.clear),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    border: Border(
+                  bottom: BorderSide(
+                    color: colorCustom1,
                   ),
-                ),
-              ),
-            ),
+                )),
+                child: Text("data")),
 
             // Last name input
             Container(

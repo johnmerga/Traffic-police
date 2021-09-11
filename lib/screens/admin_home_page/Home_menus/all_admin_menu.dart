@@ -102,25 +102,6 @@ class All_admin_menu extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: homeBtnContainer(
-                        btnNmae: 'Reports',
-                        icon: Icon(
-                          Icons.report_problem,
-                          size: 45,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: colorCustom1,
-                    elevation: 20,
-                    color: colorCustom1L,
-                    shape: roundedShape,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: roundedShape,
-                      ),
-                      onPressed: () {},
-                      child: homeBtnContainer(
                         btnNmae: 'Recent',
                         icon: Icon(
                           Icons.format_list_bulleted,
