@@ -15,7 +15,8 @@ class OfficerHome extends StatelessWidget {
 
     return Scaffold(
       drawer: MainDrawer(),
-      appBar: usableAppbar(isHome: true, name: "Traffic-officer"),
+      appBar:
+          usableAppbar(isHome: true, name: "Traffic-officer", context: context),
       body: All_menu(),
     );
   }

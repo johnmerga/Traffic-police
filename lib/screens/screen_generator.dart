@@ -7,6 +7,8 @@ import 'package:traffic_police/screens/admin_home_page/admin_home.dart';
 
 import 'admin_home_page/officers_list/Officers_List.dart';
 import 'admin_home_page/officers_list/officer_detail/Officer_Detail.dart';
+import 'admin_home_page/penalties_list/Penalties_List.dart';
+import 'admin_home_page/penalties_list/penalty_detail/Penalty_Detail.dart';
 import 'officer_home_page/add_penalities/add_penalties.dart';
 
 class RouteGenerator {
@@ -21,6 +23,10 @@ class RouteGenerator {
       "/screens/admin_home_page/officers_list/Officers_List";
   static const String officerDetail =
       "/screens/admin_home_page/officers_list/Officer_detail/Officer_detail";
+  static const String penaltyList =
+      "/screens/admin_home_page/officers_list/penalty_List";
+  static const String penaltyDetail =
+      "/screens/admin_home_page/penalties_list/penalty_detail/penalty_detail";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -38,6 +44,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OfficerList());
       case officerDetail:
         return MaterialPageRoute(builder: (_) => OfficerDetail());
+      case penaltyList:
+        return MaterialPageRoute(builder: (_) => PenaltyList());
+      case penaltyDetail:
+        return MaterialPageRoute(builder: (_) => PenaltyDetail());
 
       default:
         throw FormatException("Route was not found");

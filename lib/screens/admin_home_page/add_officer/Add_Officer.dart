@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_police/main.dart';
+import 'package:traffic_police/widget/use_again.dart';
 
 import 'Header.dart';
 import 'InputWrapper.dart';
@@ -15,6 +16,8 @@ class _AddOfficerState extends State<AddOfficer> {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       //resizeToAvoidBottomInset: false,
+      appBar:
+          usableAppbar(isHome: false, name: "Add-Officer", context: context),
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(

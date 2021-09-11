@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'Add_Penalties_Button.dart';
 import 'InputField.dart';
 
 class InputWrapper extends StatelessWidget {
@@ -21,7 +19,6 @@ class InputWrapper extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Add_Penalties_Button(),
         ],
       ),
     );

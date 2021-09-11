@@ -12,7 +12,7 @@ class _InputFieldState extends State<InputField> {
 
   final clearTxt = TextEditingController();
   bool _isHidden = true;
-  int count = 9;
+  int count = 2;
   @override
   Widget build(BuildContext context) {
     // toggle obscureText
@@ -22,8 +22,8 @@ class _InputFieldState extends State<InputField> {
       clearTxt.clear();
     }
 
-    TextStyle officerName = Theme.of(context).textTheme.subtitle1!;
-    TextStyle officerTitle = Theme.of(context).textTheme.subtitle2!;
+    TextStyle penaltyTitle = Theme.of(context).textTheme.subtitle1!;
+    TextStyle penaltyName = Theme.of(context).textTheme.subtitle2!;
 
     return ListView.builder(
         scrollDirection: Axis.vertical,
@@ -39,46 +39,27 @@ class _InputFieldState extends State<InputField> {
                 child: Icon(Icons.local_police),
               ),
               title: Text(
+                "Penalty Title",
+                style: penaltyName,
+              ),
+              subtitle: Text(
                 "Officer Name",
-                style: officerName,
+                style: penaltyTitle,
               ),
-              subtitle: Text("Position"),
-              trailing: PopupMenuButton<String>(
-                onSelected: choiceAction,
-                itemBuilder: (BuildContext context) {
-                  return Constants.choices.map((String choice) {
-                    return PopupMenuItem<String>(
-                      value: choice,
-                      child: Text(choice),
-                    );
-                  }).toList();
-                },
-              ),
+              trailing: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                  ),
+                  onPressed: () {
+                    debugPrint("Delete penalty");
+                  }),
               onTap: () {
                 debugPrint("Listen ontap");
                 Navigator.pushReplacementNamed(
-                    context, RouteGenerator.officerDetail);
+                    context, RouteGenerator.penaltyDetail);
               },
             ),
           );
         });
-  }
-}
-
-class Constants {
-  static const String Delete = 'Delete Officer';
-  static const String Ban = 'Ban Officer';
-  static const String MakeAdmin = 'Make Admin';
-
-  static const List<String> choices = <String>[Delete, Ban, MakeAdmin];
-}
-
-void choiceAction(String choice) {
-  if (choice == Constants.Delete) {
-    print('Delete');
-  } else if (choice == Constants.Ban) {
-    print('Ban');
-  } else if (choice == Constants.MakeAdmin) {
-    print('MakeAdmin');
   }
 }

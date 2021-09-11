@@ -8,14 +8,8 @@ class Header extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Center(
-            child: Text(
-              "Add Penalty",
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ),
           SizedBox(
-            height: 5,
+            height: 10,
           ),
         ],
       ),

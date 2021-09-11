@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_police/screens/screen_generator.dart';
 
-class Add_Officer_Float extends StatelessWidget {
+class Add_Penalty_Float extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(

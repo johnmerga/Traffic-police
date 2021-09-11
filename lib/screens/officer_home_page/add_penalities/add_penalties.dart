@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_police/main.dart';
+import 'package:traffic_police/widget/use_again.dart';
 
+import 'Add_Penalties_Button.dart';
 import 'Header.dart';
 import 'InputWrapper.dart';
 
@@ -15,6 +17,9 @@ class _AddPenaltiesState extends State<AddPenalties> {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
+      appBar:
+          usableAppbar(isHome: false, name: "Add-Penalties", context: context),
+
       //resizeToAvoidBottomInset: false,
       body: Container(
         width: double.infinity,
@@ -42,7 +47,8 @@ class _AddPenaltiesState extends State<AddPenalties> {
                 ),
                 child: InputWrapper(),
               ),
-            )
+            ),
+            Add_Penalties_Button(),
           ],
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_police/main.dart';
+import 'package:traffic_police/widget/use_again.dart';
 
+import 'Add_officer_Float.dart';
 import 'Header.dart';
 import 'InputWrapper.dart';
 
@@ -14,6 +16,8 @@ class _OfficerListState extends State<OfficerList> {
   Widget build(BuildContext context) {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
+      appBar: usableAppbar(isHome: false, name: "Officers", context: context),
+
       //resizeToAvoidBottomInset: false,
       body: Container(
         width: double.infinity,
@@ -41,7 +45,8 @@ class _OfficerListState extends State<OfficerList> {
                 ),
                 child: InputWrapper(),
               ),
-            )
+            ),
+            Add_Officer_Float(),
           ],
         ),
       ),

@@ -15,7 +15,7 @@ class AdminHome extends StatelessWidget {
 
     return Scaffold(
       drawer: MainDrawer(),
-      appBar: usableAppbar(isHome: true, name: "Admin-Page"),
+      appBar: usableAppbar(isHome: false, name: "Admin-Page", context: context),
       body: All_admin_menu(),
     );
   }

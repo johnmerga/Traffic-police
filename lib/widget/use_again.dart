@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 // usable AppBar
-AppBar usableAppbar({
-  String name = "home",
-  bool isHome = false,
-}) {
+AppBar usableAppbar(
+    {String name = "home",
+    bool isHome = false,
+    required BuildContext context}) {
   final styl = TextStyle(
     color: Colors.white70,
     fontSize: 30,
@@ -18,6 +18,10 @@ AppBar usableAppbar({
     title: Text(
       name,
       style: styl,
+    ),
+    leading: new IconButton(
+      icon: new Icon(Icons.arrow_back_ios, color: Colors.grey),
+      onPressed: () => Navigator.of(context).pop(),
     ),
   );
 }

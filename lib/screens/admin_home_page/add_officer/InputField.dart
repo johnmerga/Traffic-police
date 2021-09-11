@@ -30,15 +30,13 @@ class _InputFieldState extends State<InputField> {
     // toggle obscureText
 
     // clears input text
-    void clearInput() {
+    /*void clearInput() {
       clearTxt.clear();
     }
-
+*/
     return ListView(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      //children: [
-      //Column(
       children: <Widget>[
         // Firsst Name input
         Container(
@@ -56,7 +54,7 @@ class _InputFieldState extends State<InputField> {
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: clearTxt.clear,
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -79,7 +77,7 @@ class _InputFieldState extends State<InputField> {
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: clearTxt.clear,
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -119,13 +117,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            //controller: clearTxt,
             decoration: InputDecoration(
               hintText: "Position",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: () => clearTxt.clear(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -142,13 +140,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            //controller: clearTxt,
             decoration: InputDecoration(
               hintText: "Sex",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: () => clearTxt.clear(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -165,13 +163,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            //controller: clearTxt,
             decoration: InputDecoration(
               hintText: "State",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: () => clearTxt.clear(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -188,13 +186,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            //controller: clearTxt,
             decoration: InputDecoration(
               hintText: "Phone Number",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: () => clearTxt.clear(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -212,13 +210,13 @@ class _InputFieldState extends State<InputField> {
             ),
           )),
           child: TextField(
-            controller: clearTxt,
+            //controller: clearTxt,
             decoration: InputDecoration(
               hintText: "Email",
               hintStyle: TextStyle(color: Colors.grey),
               border: InputBorder.none,
               suffix: IconButton(
-                onPressed: () => clearInput(),
+                onPressed: () => clearTxt.clear(),
                 icon: Icon(Icons.clear),
               ),
             ),
@@ -255,7 +253,7 @@ class _InputFieldState extends State<InputField> {
 
         // Start date input
         Container(
-          padding: EdgeInsets.all(5),
+          padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
               border: Border(
             bottom: BorderSide(
@@ -270,14 +268,12 @@ class _InputFieldState extends State<InputField> {
                 onPressed: () => _selectDate(context),
                 child: Icon(Icons.calendar_today),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 25),
               Text("${selectedDate.toLocal()}".split(' ')[0]),
             ],
           ),
         ),
       ],
-      //),
-      //],
     );
   }
 }

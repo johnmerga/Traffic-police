@@ -78,7 +78,10 @@ class All_admin_menu extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: roundedShape,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, RouteGenerator.penaltyList);
+                      },
                       child: homeBtnContainer(
                         btnNmae: 'Penalties',
                         icon: Icon(

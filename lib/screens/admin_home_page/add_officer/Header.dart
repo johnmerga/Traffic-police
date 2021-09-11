@@ -8,12 +8,6 @@ class Header extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Center(
-            child: Text(
-              "Add Officer",
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ),
           SizedBox(
             height: 5,
           ),
